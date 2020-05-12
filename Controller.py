@@ -8,10 +8,7 @@ class Controller:
     def __init__(self):
         import sys
         app = QtWidgets.QApplication(sys.argv)
-        MainWindow = QtWidgets.QMainWindow()
         self.tickets_view = TicketsView()
-        self.tickets_view.setupUi(MainWindow)
-        MainWindow.show()
         self.ticket_machine = TicketMachine()
         self.order = Order()
         self.assign_actions_to_buttons()
@@ -48,3 +45,9 @@ class Controller:
         print(name, price, type)
         t = Ticket(name, price, type)
         self.order.add_ticket(t)
+        self.update_informations()
+
+    # aktualizacja informacji o ilości i cenie wybranych biletów
+    def update_informations(self):
+        self.tickets_view.label_tickets_count_value.setText(str(len(self.order.tickets)))
+        self.tickets_view.label_total_cost_value.setText(str(self.order.cost))

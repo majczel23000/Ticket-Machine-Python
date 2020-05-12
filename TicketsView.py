@@ -1,18 +1,23 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
-class TicketsView(object):
-    def setupUi(self, MainWindow):
-        MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(580, 732)
+
+class TicketsView(QtWidgets.QMainWindow):
+    def __init__(self):
+        super(TicketsView, self).__init__()
+        self.setupUi()
+
+    def setupUi(self):
+        self.setObjectName("TicketsWidget")
+        self.resize(580, 732)
         font = QtGui.QFont()
         font.setFamily("Consolas")
         font.setPointSize(9)
         font.setBold(True)
         font.setItalic(False)
         font.setWeight(75)
-        MainWindow.setFont(font)
-        MainWindow.setAutoFillBackground(False)
-        self.TicketsWidget = QtWidgets.QWidget(MainWindow)
+        self.setFont(font)
+        self.setAutoFillBackground(False)
+        self.TicketsWidget = QtWidgets.QWidget(self)
         self.TicketsWidget.setObjectName("TicketsWidget")
         self.label_title = QtWidgets.QLabel(self.TicketsWidget)
         self.label_title.setGeometry(QtCore.QRect(0, 0, 571, 111))
@@ -179,14 +184,14 @@ class TicketsView(object):
         self.btn_reduced_oneway_2 = QtWidgets.QPushButton(self.gridLayoutWidget_4)
         self.btn_reduced_oneway_2.setObjectName("btn_reduced_oneway_2")
         self.grid_reduced_tickets_second.addWidget(self.btn_reduced_oneway_2, 3, 0, 1, 1)
-        MainWindow.setCentralWidget(self.TicketsWidget)
+        self.setCentralWidget(self.TicketsWidget)
 
-        self.retranslateUi(MainWindow)
-        QtCore.QMetaObject.connectSlotsByName(MainWindow)
+        self.retranslateUi()
+        QtCore.QMetaObject.connectSlotsByName(self)
 
-    def retranslateUi(self, MainWindow):
+    def retranslateUi(self):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "Ticket Machine - PINDOL"))
+        self.setWindowTitle(_translate("MainWindow", "Ticket Machine - PINDOL"))
         self.label_title.setText(_translate("MainWindow", "--- AUTOMAT BILETOWY PINDOL ---"))
         self.label_tickets_reduced.setText(_translate("MainWindow", "ULGOWE:"))
         self.btn_normal_40.setText(_translate("MainWindow", "40 minutowy [3.60zł]"))
@@ -212,3 +217,4 @@ class TicketsView(object):
         self.btn_reduced_twoway_2.setText(_translate("MainWindow", "Dwuprzejazdowy [4.00zł ]"))
         self.btn_reduced_20_2.setText(_translate("MainWindow", "20 minutowy [1.20zł]"))
         self.btn_reduced_oneway_2.setText(_translate("MainWindow", "Jednoprzejazdowy [2.50zł]"))
+        self.show()

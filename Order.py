@@ -1,7 +1,7 @@
 from Banknote import Banknote
 from Coin import Coin
 from Ticket import Ticket
-
+from decimal import Decimal
 
 class Order:
     def __init__(self):
@@ -17,8 +17,14 @@ class Order:
     def add_ticket(self, ticket):
         if isinstance(ticket, Ticket):
             self.tickets.append(ticket)
+            print('cost1', self.cost)
             self.cost += float(ticket.price)
+            print('cost', self.cost)
+            self.cost = float(round(Decimal(self.cost), 2))
+
             self.quantity += 1
+        print(self.tickets)
+        print(self.cost)
 
     def insert_coin(self, coin):
         if isinstance(coin, Coin):
