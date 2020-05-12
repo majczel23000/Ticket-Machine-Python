@@ -17,7 +17,7 @@ class Order:
     def add_ticket(self, ticket):
         if isinstance(ticket, Ticket):
             self.tickets.append(ticket)
-            self.cost += ticket.price
+            self.cost += float(ticket.price)
             self.quantity += 1
 
     def insert_coin(self, coin):
