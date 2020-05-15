@@ -33,3 +33,5 @@ class Order:
     def insert_banknote(self, banknote):
         if isinstance(banknote, Banknote):
             self.storage[banknote.value] += 1
+
+
