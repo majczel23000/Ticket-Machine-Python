@@ -40,6 +40,9 @@ class Controller:
         self.tickets_view.btn_reduced_oneway_2.clicked.connect(lambda: self.add_ticket('Jednoprzejazdowy', 2.50, 'Ulgowy'))
         self.tickets_view.btn_reduced_twoway_2.clicked.connect(lambda: self.add_ticket('Dwuprzejazdowy', 4.00, 'Ulgowy'))
 
+        # Przyciski + i -
+
+
     # dodanie biletu do listy czy cuś
     def add_ticket(self, name, price, type):
         print(name, price, type)
@@ -51,3 +54,4 @@ class Controller:
     def update_informations(self):
         self.tickets_view.label_tickets_count_value.setText(str(len(self.order.tickets)))
         self.tickets_view.label_total_cost_value.setText(str(self.order.cost))
+
