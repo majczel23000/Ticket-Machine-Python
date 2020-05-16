@@ -7,7 +7,7 @@ class ButtonsFactory:
         return Button(buttonsData['zone1'][code]['name'], buttonsData['zone1'][code]['text'])
 
     def createTicketSecondZone(self, code):
-        return Button(buttonsData['zone2'][code]['name'], buttonsData['zone1'][code]['text'])
+        return Button(buttonsData['zone2'][code]['name'], buttonsData['zone2'][code]['text'])
 
     def createMinusButton(self, name):
         return Button(name, '-')

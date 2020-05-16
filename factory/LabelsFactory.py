@@ -1,6 +1,7 @@
 from model.Label import Label
-
+from common.labels_data import labelsData
 
 class LabelFactory:
-    def createLabel(self, parent, name, geometry=0, font=0, alignment=0, text=0):
-        return Label(parent, name, geometry, font, alignment, text)
+    def createLabel(self, parent, code, font):
+        return Label(parent, code, labelsData[code]['geometry'], font, labelsData[code]['alignment'],labelsData[code][
+            'text'])

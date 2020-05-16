@@ -1,11 +1,10 @@
-from PyQt5 import QtCore, QtGui, QtWidgets
-
-from model.Button import Button
+from PyQt5 import QtCore, QtWidgets
 from factory.WidgetFactory import WidgetFactory
 from factory.ButtonsFactory import ButtonsFactory
 from factory.FontFactory import FontFactory
 from factory.GridFactory import GridFactory
 from factory.LabelsFactory import LabelFactory
+from factory.VboxFactory import VboxFactory
 
 
 class TicketsView(QtWidgets.QMainWindow):
@@ -16,46 +15,52 @@ class TicketsView(QtWidgets.QMainWindow):
         self.widgetFactory = WidgetFactory()
         self.gridFactory = GridFactory()
         self.labelFactory = LabelFactory()
+        self.vboxFactory = VboxFactory()
         self.setupUi()
+        self.show()
 
     def setupUi(self):
         self.setObjectName("TicketsWidget")
         self.resize(950, 732)
-
         font = self.fontFactory.createFont('Consolas', 9, True, False, 75)
         self.setFont(font)
-
-        # Main widget
         self.TicketsWidget = QtWidgets.QWidget(self)
         self.TicketsWidget.setObjectName("TicketsWidget")
 
+        self.generateMainLabels(font)
+        self.generateBottomView(font)
+
+        self.setCentralWidget(self.TicketsWidget)
+        self.generateButtonsAndLabelsPlusMinus(font)
+        self.generateButtonsTicketsWithNames()
+        self.generateCosmetics()
+        QtCore.QMetaObject.connectSlotsByName(self)
+
+    def generateMainLabels(self, font):
         font.setPointSize(18)
-        self.label_title = self.labelFactory.createLabel(self.TicketsWidget, 'label_title', QtCore.QRect(0, 0, 861, 111), font, QtCore.Qt.AlignCenter, '--- AUTOMAT BILETOWY RAZPIN ---')
-
+        self.label_title = self.labelFactory.createLabel(self.TicketsWidget, 'label_title', font)
         font.setPointSize(14)
-        self.label_tickets_reduced = self.labelFactory.createLabel(self.TicketsWidget, 'label_tickets_reduced', QtCore.QRect(520, 140, 221, 31), font, QtCore.Qt.AlignCenter, 'ULGOWE:')
-        self.label_tickets_normal = self.labelFactory.createLabel(self.TicketsWidget, 'label_tickets_normal',QtCore.QRect(80, 130, 221, 28), font,QtCore.Qt.AlignCenter, 'NORMALNE:')
-
+        self.label_tickets_reduced = self.labelFactory.createLabel(self.TicketsWidget, 'label_tickets_reduced', font)
+        self.label_tickets_normal = self.labelFactory.createLabel(self.TicketsWidget, 'label_tickets_normal', font)
         font.setPointSize(13)
-        self.label_strefa_1 = self.labelFactory.createLabel(self.TicketsWidget, 'label_strefa_1',QtCore.QRect(20, 170, 21, 201), font,QtCore.Qt.AlignCenter, 'S T R E F A  I')
+        self.label_strefa_1 = self.labelFactory.createLabel(self.TicketsWidget, 'label_strefa_1', font)
         self.label_strefa_1.setLayoutDirection(QtCore.Qt.LeftToRight)
         self.label_strefa_1.setTextFormat(QtCore.Qt.PlainText)
         self.label_strefa_1.setWordWrap(True)
-
-        self.label_strefa_2 = self.labelFactory.createLabel(self.TicketsWidget, 'label_strefa_2',QtCore.QRect(20, 390, 21, 241), font,QtCore.Qt.AlignCenter, 'S T R E F A I + II')
+        self.label_strefa_2 = self.labelFactory.createLabel(self.TicketsWidget, 'label_strefa_2', font)
         self.label_strefa_2.setLayoutDirection(QtCore.Qt.LeftToRight)
         self.label_strefa_2.setTextFormat(QtCore.Qt.PlainText)
         self.label_strefa_2.setWordWrap(True)
 
-        # BOTTOM VIEW
+    def generateBottomView(self, font):
         self.horizontalLayoutWidget = self.widgetFactory.createWidget(self.TicketsWidget, 'horizontalLayoutWidget')
         self.horizontalLayout = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget)
         self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
         self.horizontalLayout.setObjectName("horizontalLayout")
-        self.label_total_cost = self.labelFactory.createLabel(self.horizontalLayoutWidget,'label_total_cost',0,0,QtCore.Qt.AlignCenter,'Do zapłaty:')
-        self.label_total_cost_value = self.labelFactory.createLabel(self.horizontalLayoutWidget,'label_total_cost_value',0,0,QtCore.Qt.AlignCenter,'0.00')
-        self.label_tickets_count = self.labelFactory.createLabel(self.horizontalLayoutWidget,'label_tickets_count',0,0,QtCore.Qt.AlignCenter,'Ilość biletów:')
-        self.label_tickets_count_value = self.labelFactory.createLabel(self.horizontalLayoutWidget,'label_tickets_count_value',0,0,QtCore.Qt.AlignCenter,'0')
+        self.label_total_cost = self.labelFactory.createLabel(self.horizontalLayoutWidget, 'label_total_cost', 0)
+        self.label_total_cost_value = self.labelFactory.createLabel(self.horizontalLayoutWidget, 'label_total_cost_value', 0)
+        self.label_tickets_count = self.labelFactory.createLabel(self.horizontalLayoutWidget, 'label_tickets_count', 0)
+        self.label_tickets_count_value = self.labelFactory.createLabel(self.horizontalLayoutWidget, 'label_tickets_count_value', 0)
         self.horizontalLayout.addWidget(self.label_total_cost)
         self.horizontalLayout.addWidget(self.label_total_cost_value)
         self.horizontalLayout.addWidget(self.label_tickets_count)
@@ -67,168 +72,115 @@ class TicketsView(QtWidgets.QMainWindow):
         self.payment.setObjectName("payment")
         self.payment.setText('Przejdź do płatności')
 
+    def generateButtonsAndLabelsPlusMinus(self, font):
         self.verticalLayoutWidget = self.widgetFactory.createWidget(self.TicketsWidget, 'verticalLayoutWidget')
-        self.layout_reduced_second_minus = QtWidgets.QVBoxLayout(self.verticalLayoutWidget)
-        self.layout_reduced_second_minus.setContentsMargins(0, 0, 0, 0)
-        self.layout_reduced_second_minus.setObjectName("layout_reduced_second_minus")
         self.btn_reduced_20_2_minus = self.buttonsFactory.createMinusButton('btn_reduced_20_2_minus')
-        self.layout_reduced_second_minus.addWidget(self.btn_reduced_20_2_minus)
         self.btn_reduced_40_2_minus = self.buttonsFactory.createMinusButton('btn_reduced_40_2_minus')
-        self.layout_reduced_second_minus.addWidget(self.btn_reduced_40_2_minus)
         self.btn_reduced_oneway_2_minus = self.buttonsFactory.createMinusButton('btn_reduced_oneway_2_minus')
-        self.layout_reduced_second_minus.addWidget(self.btn_reduced_oneway_2_minus)
         self.btn_reduced_twoway_2_minus = self.buttonsFactory.createMinusButton('btn_reduced_twoway_2_minus')
-        self.layout_reduced_second_minus.addWidget(self.btn_reduced_twoway_2_minus)
+        self.layout_reduced_second_minus = self.vboxFactory.createVbox(self.verticalLayoutWidget, 'layout_reduced_second_minus', [
+            self.btn_reduced_20_2_minus, self.btn_reduced_40_2_minus, self.btn_reduced_oneway_2_minus, self.btn_reduced_twoway_2_minus
+        ])
 
         self.verticalLayoutWidget_2 = self.widgetFactory.createWidget(self.TicketsWidget, 'verticalLayoutWidget_2')
-        self.layout_reduced_second_plus = QtWidgets.QVBoxLayout(self.verticalLayoutWidget_2)
-        self.layout_reduced_second_plus.setContentsMargins(0, 0, 0, 0)
-        self.layout_reduced_second_plus.setObjectName("layout_reduced_second_plus")
         self.btn_reduced_20_2_plus = self.buttonsFactory.createPlusButton('btn_reduced_20_2_plus')
-        self.layout_reduced_second_plus.addWidget(self.btn_reduced_20_2_plus)
         self.btn_reduced_40_2_plus = self.buttonsFactory.createPlusButton('btn_reduced_40_2_plus')
-        self.layout_reduced_second_plus.addWidget(self.btn_reduced_40_2_plus)
         self.btn_reduced_oneway_2_plus = self.buttonsFactory.createPlusButton('btn_reduced_oneway_2_plus')
-        self.layout_reduced_second_plus.addWidget(self.btn_reduced_oneway_2_plus)
         self.btn_reduced_twoway_2_plus = self.buttonsFactory.createPlusButton('btn_reduced_twoway_2_plus')
-        self.layout_reduced_second_plus.addWidget(self.btn_reduced_twoway_2_plus)
+        self.layout_reduced_second_plus = self.vboxFactory.createVbox(self.verticalLayoutWidget_2, 'layout_reduced_second_plus', [
+            self.btn_reduced_20_2_plus, self.btn_reduced_40_2_plus, self.btn_reduced_oneway_2_plus, self.btn_reduced_twoway_2_plus
+        ])
 
         font.setPointSize(12)
         self.verticalLayoutWidget_3 = self.widgetFactory.createWidget(self.TicketsWidget, 'verticalLayoutWidget_3')
-        self.layout_reduced_second_count = QtWidgets.QVBoxLayout(self.verticalLayoutWidget_3)
-        self.layout_reduced_second_count.setContentsMargins(0, 0, 0, 0)
-        self.layout_reduced_second_count.setObjectName("layout_reduced_second_count")
-        self.btn_reduced_20_2_count = self.labelFactory.createLabel(self.verticalLayoutWidget_3,'btn_reduced_20_2_count',0,font,QtCore.Qt.AlignCenter,'0')
-        self.layout_reduced_second_count.addWidget(self.btn_reduced_20_2_count)
-        self.btn_reduced_40_2_count = self.labelFactory.createLabel(self.verticalLayoutWidget_3,'btn_reduced_40_2_count',0,font,QtCore.Qt.AlignCenter,'0')
-        self.layout_reduced_second_count.addWidget(self.btn_reduced_40_2_count)
-        self.btn_reduced_oneway_2_count = self.labelFactory.createLabel(self.verticalLayoutWidget_3,'btn_reduced_oneway_2_count',0,font,QtCore.Qt.AlignCenter,'0')
-        self.layout_reduced_second_count.addWidget(self.btn_reduced_oneway_2_count)
-        self.btn_reduced_twoway_2_count = self.labelFactory.createLabel(self.verticalLayoutWidget_3,'btn_reduced_twoway_2_count',0,font,QtCore.Qt.AlignCenter,'0')
-        self.layout_reduced_second_count.addWidget(self.btn_reduced_twoway_2_count)
+        self.btn_reduced_20_2_count = self.labelFactory.createLabel(self.verticalLayoutWidget_3, 'btn_reduced_20_2_count', font)
+        self.btn_reduced_40_2_count = self.labelFactory.createLabel(self.verticalLayoutWidget_3, 'btn_reduced_40_2_count', font)
+        self.btn_reduced_oneway_2_count = self.labelFactory.createLabel(self.verticalLayoutWidget_3, 'btn_reduced_oneway_2_count', font)
+        self.btn_reduced_twoway_2_count = self.labelFactory.createLabel(self.verticalLayoutWidget_3, 'btn_reduced_twoway_2_count', font)
+        self.layout_reduced_second_count = self.vboxFactory.createVbox(self.verticalLayoutWidget_3, 'layout_reduced_second_count', [
+            self.btn_reduced_20_2_count, self.btn_reduced_40_2_count, self.btn_reduced_oneway_2_count, self.btn_reduced_twoway_2_count
+        ])
 
         self.verticalLayoutWidget_4 = self.widgetFactory.createWidget(self.TicketsWidget, 'verticalLayoutWidget_4')
-        self.verticalLayout_7 = QtWidgets.QVBoxLayout(self.verticalLayoutWidget_4)
-        self.verticalLayout_7.setContentsMargins(0, 0, 0, 0)
-        self.verticalLayout_7.setObjectName("verticalLayout_7")
         self.btn_reduced_20_minus = self.buttonsFactory.createMinusButton('btn_reduced_20_minus')
-        self.verticalLayout_7.addWidget(self.btn_reduced_20_minus)
         self.btn_reduced_40_minus = self.buttonsFactory.createMinusButton('btn_reduced_40_minus')
-        self.verticalLayout_7.addWidget(self.btn_reduced_40_minus)
         self.btn_reduced_oneway_minus = self.buttonsFactory.createMinusButton('btn_reduced_oneway_minus')
-        self.verticalLayout_7.addWidget(self.btn_reduced_oneway_minus)
         self.btn_reduced_twoway_minus = self.buttonsFactory.createMinusButton('btn_reduced_twoway_minus')
-        self.verticalLayout_7.addWidget(self.btn_reduced_twoway_minus)
+        self.verticalLayout_7 = self.vboxFactory.createVbox(self.verticalLayoutWidget_4, 'verticalLayout_7', [
+            self.btn_reduced_20_minus, self.btn_reduced_40_minus, self.btn_reduced_oneway_minus, self.btn_reduced_twoway_minus
+        ])
 
         self.verticalLayoutWidget_5 = self.widgetFactory.createWidget(self.TicketsWidget, 'verticalLayoutWidget_5')
-        self.layout_normal_first_minus = QtWidgets.QVBoxLayout(self.verticalLayoutWidget_5)
-        self.layout_normal_first_minus.setContentsMargins(0, 0, 0, 0)
-        self.layout_normal_first_minus.setObjectName("layout_normal_first_minus")
         self.btn_normal_20_minus = self.buttonsFactory.createMinusButton('btn_normal_20_minus')
-        self.layout_normal_first_minus.addWidget(self.btn_normal_20_minus)
         self.btn_normal_40_minus = self.buttonsFactory.createMinusButton('btn_normal_40_minus')
-        self.layout_normal_first_minus.addWidget(self.btn_normal_40_minus)
         self.btn_normal_oneway_minus = self.buttonsFactory.createMinusButton('btn_normal_oneway_minus')
-        self.layout_normal_first_minus.addWidget(self.btn_normal_oneway_minus)
         self.btn_normal_twoway_minus = self.buttonsFactory.createMinusButton('btn_normal_twoway_minus')
-        self.layout_normal_first_minus.addWidget(self.btn_normal_twoway_minus)
+        self.layout_normal_first_minus = self.vboxFactory.createVbox(self.verticalLayoutWidget_5, 'layout_normal_first_minus', [
+            self.btn_normal_20_minus, self.btn_normal_40_minus, self.btn_normal_oneway_minus, self.btn_normal_twoway_minus
+        ])
 
         self.verticalLayoutWidget_6 = self.widgetFactory.createWidget(self.TicketsWidget, 'verticalLayoutWidget_6')
-        self.layout_normal_second_minus = QtWidgets.QVBoxLayout(self.verticalLayoutWidget_6)
-        self.layout_normal_second_minus.setContentsMargins(0, 0, 0, 0)
-        self.layout_normal_second_minus.setObjectName("layout_normal_second_minus")
         self.btn_normal_20_2_minus = self.buttonsFactory.createMinusButton('btn_normal_20_2_minus')
-        self.layout_normal_second_minus.addWidget(self.btn_normal_20_2_minus)
         self.btn_normal_40_2_minus = self.buttonsFactory.createMinusButton('btn_normal_40_2_minus')
-        self.layout_normal_second_minus.addWidget(self.btn_normal_40_2_minus)
         self.btn_normal_oneway_2_minus = self.buttonsFactory.createMinusButton('btn_normal_oneway_2_minus')
-        self.layout_normal_second_minus.addWidget(self.btn_normal_oneway_2_minus)
         self.btn_normal_twoway_2_minus = self.buttonsFactory.createMinusButton('btn_normal_twoway_2_minus')
-        self.layout_normal_second_minus.addWidget(self.btn_normal_twoway_2_minus)
+        self.layout_normal_second_minus = self.vboxFactory.createVbox(self.verticalLayoutWidget_6, 'layout_normal_second_minus', [
+            self.btn_normal_20_2_minus, self.btn_normal_40_2_minus, self.btn_normal_oneway_2_minus, self.btn_normal_twoway_2_minus
+        ])
 
         self.verticalLayoutWidget_7 = self.widgetFactory.createWidget(self.TicketsWidget, 'verticalLayoutWidget_7')
-        self.layout_normal_first_count = QtWidgets.QVBoxLayout(self.verticalLayoutWidget_7)
-        self.layout_normal_first_count.setContentsMargins(0, 0, 0, 0)
-        self.layout_normal_first_count.setObjectName("layout_normal_first_count")
-        self.btn_normal_20_count = self.labelFactory.createLabel(self.verticalLayoutWidget_3,'btn_normal_20_count',0,font,QtCore.Qt.AlignCenter,'0')
-        self.layout_normal_first_count.addWidget(self.btn_normal_20_count)
-        self.btn_normal_40_count = self.labelFactory.createLabel(self.verticalLayoutWidget_3,'btn_normal_40_count',0,font,QtCore.Qt.AlignCenter,'0')
-        self.layout_normal_first_count.addWidget(self.btn_normal_40_count)
-        self.btn_normal_oneway_count = self.labelFactory.createLabel(self.verticalLayoutWidget_3,'btn_normal_oneway_count',0,font,QtCore.Qt.AlignCenter,'0')
-        self.layout_normal_first_count.addWidget(self.btn_normal_oneway_count)
-        self.btn_normal_twoway_count = self.labelFactory.createLabel(self.verticalLayoutWidget_3,'btn_normal_twoway_count',0,font,QtCore.Qt.AlignCenter,'0')
-        self.layout_normal_first_count.addWidget(self.btn_normal_twoway_count)
+        self.btn_normal_20_count = self.labelFactory.createLabel(self.verticalLayoutWidget_3, 'btn_normal_20_count', font)
+        self.btn_normal_40_count = self.labelFactory.createLabel(self.verticalLayoutWidget_3, 'btn_normal_40_count', font)
+        self.btn_normal_oneway_count = self.labelFactory.createLabel(self.verticalLayoutWidget_3, 'btn_normal_oneway_count', font)
+        self.btn_normal_twoway_count = self.labelFactory.createLabel(self.verticalLayoutWidget_3, 'btn_normal_twoway_count', font)
+        self.layout_normal_first_count = self.vboxFactory.createVbox(self.verticalLayoutWidget_7, 'layout_normal_first_count', [
+            self.btn_normal_20_count, self.btn_normal_40_count, self.btn_normal_oneway_count, self.btn_normal_twoway_count
+        ])
 
         self.verticalLayoutWidget_8 = self.widgetFactory.createWidget(self.TicketsWidget, 'verticalLayoutWidget_8')
-        self.layout_normal_second_count = QtWidgets.QVBoxLayout(self.verticalLayoutWidget_8)
-        self.layout_normal_second_count.setContentsMargins(0, 0, 0, 0)
-        self.layout_normal_second_count.setObjectName("layout_normal_second_count")
-        self.btn_normal_20_2_count = self.labelFactory.createLabel(self.verticalLayoutWidget_3,'btn_normal_20_2_count',0,font,QtCore.Qt.AlignCenter,'0')
-        self.layout_normal_second_count.addWidget(self.btn_normal_20_2_count)
-        self.btn_normal_40_2_count = self.labelFactory.createLabel(self.verticalLayoutWidget_3,'btn_normal_40_2_count',0,font,QtCore.Qt.AlignCenter,'0')
-        self.layout_normal_second_count.addWidget(self.btn_normal_40_2_count)
-        self.btn_normal_oneway_2_count = self.labelFactory.createLabel(self.verticalLayoutWidget_3,'btn_normal_oneway_2_count',0,font,QtCore.Qt.AlignCenter,'0')
-        self.layout_normal_second_count.addWidget(self.btn_normal_oneway_2_count)
-        self.btn_normal_twoway_2_count = self.labelFactory.createLabel(self.verticalLayoutWidget_3,'btn_normal_twoway_2_count',0,font,QtCore.Qt.AlignCenter,'0')
-        self.layout_normal_second_count.addWidget(self.btn_normal_twoway_2_count)
+        self.btn_normal_20_2_count = self.labelFactory.createLabel(self.verticalLayoutWidget_3, 'btn_normal_20_2_count', font)
+        self.btn_normal_40_2_count = self.labelFactory.createLabel(self.verticalLayoutWidget_3, 'btn_normal_40_2_count', font)
+        self.btn_normal_oneway_2_count = self.labelFactory.createLabel(self.verticalLayoutWidget_3, 'btn_normal_oneway_2_count', font)
+        self.btn_normal_twoway_2_count = self.labelFactory.createLabel(self.verticalLayoutWidget_3, 'btn_normal_twoway_2_count', font)
+        self.layout_normal_second_count = self.vboxFactory.createVbox(self.verticalLayoutWidget_8, 'layout_normal_second_count', [
+            self.btn_normal_20_2_count, self.btn_normal_40_2_count, self.btn_normal_oneway_2_count, self.btn_normal_twoway_2_count
+        ])
 
         self.verticalLayoutWidget_9 = self.widgetFactory.createWidget(self.TicketsWidget, 'verticalLayoutWidget_9')
-        self.layout_normal_first_plus = QtWidgets.QVBoxLayout(self.verticalLayoutWidget_9)
-        self.layout_normal_first_plus.setContentsMargins(0, 0, 0, 0)
-        self.layout_normal_first_plus.setObjectName("layout_normal_first_plus")
         self.btn_normal_20_plus = self.buttonsFactory.createPlusButton('btn_normal_20_plus')
-        self.layout_normal_first_plus.addWidget(self.btn_normal_20_plus)
         self.btn_normal_40_plus = self.buttonsFactory.createPlusButton('btn_normal_40_plus')
-        self.layout_normal_first_plus.addWidget(self.btn_normal_40_plus)
         self.btn_normal_oneway_plus = self.buttonsFactory.createPlusButton('btn_normal_oneway_plus')
-        self.layout_normal_first_plus.addWidget(self.btn_normal_oneway_plus)
         self.btn_normal_twoway_plus = self.buttonsFactory.createPlusButton('btn_normal_twoway_plus')
-        self.layout_normal_first_plus.addWidget(self.btn_normal_twoway_plus)
+        self.layout_normal_first_plus = self.vboxFactory.createVbox(self.verticalLayoutWidget_9, 'layout_normal_first_plus', [
+            self.btn_normal_20_plus, self.btn_normal_40_plus, self.btn_normal_oneway_plus, self.btn_normal_twoway_plus
+        ])
 
         self.verticalLayoutWidget_10 = self.widgetFactory.createWidget(self.TicketsWidget, 'verticalLayoutWidget_10')
-        self.layout_normal_second_plus = QtWidgets.QVBoxLayout(self.verticalLayoutWidget_10)
-        self.layout_normal_second_plus.setContentsMargins(0, 0, 0, 0)
-        self.layout_normal_second_plus.setObjectName("layout_normal_second_plus")
         self.btn_normal_20_2_plus = self.buttonsFactory.createPlusButton('btn_normal_20_2_plus')
-        self.layout_normal_second_plus.addWidget(self.btn_normal_20_2_plus)
         self.btn_normal_40_2_plus = self.buttonsFactory.createPlusButton('btn_normal_40_2_plus')
-        self.layout_normal_second_plus.addWidget(self.btn_normal_40_2_plus)
         self.btn_normal_oneway_2_plus = self.buttonsFactory.createPlusButton('btn_normal_oneway_2_plus')
-        self.layout_normal_second_plus.addWidget(self.btn_normal_oneway_2_plus)
         self.btn_normal_twoway_2_plus = self.buttonsFactory.createPlusButton('btn_normal_twoway_2_plus')
-        self.layout_normal_second_plus.addWidget(self.btn_normal_twoway_2_plus)
+        self.layout_normal_second_plus = self.vboxFactory.createVbox(self.verticalLayoutWidget_10, 'layout_normal_second_plus', [
+            self.btn_normal_20_2_plus, self.btn_normal_40_2_plus, self.btn_normal_oneway_2_plus, self.btn_normal_twoway_2_plus
+        ])
 
         self.verticalLayoutWidget_11 = self.widgetFactory.createWidget(self.TicketsWidget, 'verticalLayoutWidget_11')
-        self.layout_reduced_first_count = QtWidgets.QVBoxLayout(self.verticalLayoutWidget_11)
-        self.layout_reduced_first_count.setContentsMargins(0, 0, 0, 0)
-        self.layout_reduced_first_count.setObjectName("layout_reduced_first_count")
-        self.btn_reduced_20_count = self.labelFactory.createLabel(self.verticalLayoutWidget_3,'btn_reduced_20_count',0,font,QtCore.Qt.AlignCenter,'0')
-        self.layout_reduced_first_count.addWidget(self.btn_reduced_20_count)
-        self.btn_reduced_40_count = self.labelFactory.createLabel(self.verticalLayoutWidget_3,'btn_reduced_40_count',0,font,QtCore.Qt.AlignCenter,'0')
-        self.layout_reduced_first_count.addWidget(self.btn_reduced_40_count)
-        self.btn_reduced_oneway_count = self.labelFactory.createLabel(self.verticalLayoutWidget_3,'btn_reduced_oneway_count',0,font,QtCore.Qt.AlignCenter,'0')
-        self.layout_reduced_first_count.addWidget(self.btn_reduced_oneway_count)
-        self.btn_reduced_twoway_count = self.labelFactory.createLabel(self.verticalLayoutWidget_3,'btn_reduced_twoway_count',0,font,QtCore.Qt.AlignCenter,'0')
-        self.layout_reduced_first_count.addWidget(self.btn_reduced_twoway_count)
+        self.btn_reduced_20_count = self.labelFactory.createLabel(self.verticalLayoutWidget_3, 'btn_reduced_20_count', font)
+        self.btn_reduced_40_count = self.labelFactory.createLabel(self.verticalLayoutWidget_3, 'btn_reduced_40_count', font)
+        self.btn_reduced_oneway_count = self.labelFactory.createLabel(self.verticalLayoutWidget_3, 'btn_reduced_oneway_count', font)
+        self.btn_reduced_twoway_count = self.labelFactory.createLabel(self.verticalLayoutWidget_3, 'btn_reduced_twoway_count', font)
+        self.layout_reduced_first_count = self.vboxFactory.createVbox(self.verticalLayoutWidget_11, 'layout_reduced_first_count', [
+            self.btn_reduced_20_count, self.btn_reduced_40_count, self.btn_reduced_oneway_count, self.btn_reduced_twoway_count
+        ])
 
         self.verticalLayoutWidget_12 = self.widgetFactory.createWidget(self.TicketsWidget, 'verticalLayoutWidget_12')
-        self.layout_reduced_first_plus = QtWidgets.QVBoxLayout(self.verticalLayoutWidget_12)
-        self.layout_reduced_first_plus.setContentsMargins(0, 0, 0, 0)
-        self.layout_reduced_first_plus.setObjectName("layout_reduced_first_plus")
         self.btn_reduced_20_plus = self.buttonsFactory.createPlusButton('btn_reduced_20_plus')
-        self.layout_reduced_first_plus.addWidget(self.btn_reduced_20_plus)
         self.btn_reduced_40_plus = self.buttonsFactory.createPlusButton('btn_reduced_40_plus')
-        self.layout_reduced_first_plus.addWidget(self.btn_reduced_40_plus)
         self.btn_reduced_oneway_plus = self.buttonsFactory.createPlusButton('btn_reduced_oneway_plus')
-        self.layout_reduced_first_plus.addWidget(self.btn_reduced_oneway_plus)
         self.btn_reduced_twoway_plus = self.buttonsFactory.createPlusButton('btn_reduced_twoway_plus')
-        self.layout_reduced_first_plus.addWidget(self.btn_reduced_twoway_plus)
-
-        self.setCentralWidget(self.TicketsWidget)
-        self.generateButtonsTicketsWithNames()
-        self.generateCosmetics()
-        self.retranslateUi()
-        QtCore.QMetaObject.connectSlotsByName(self)
+        self.layout_reduced_first_plus = self.vboxFactory.createVbox(self.verticalLayoutWidget_12, 'layout_reduced_first_plus', [
+            self.btn_reduced_20_plus, self.btn_reduced_40_plus, self.btn_reduced_oneway_plus, self.btn_reduced_twoway_plus
+        ])
 
     def generateButtonsTicketsWithNames(self):
         # REDUCED ZONE 1
@@ -236,66 +188,41 @@ class TicketsView(QtWidgets.QMainWindow):
         self.btn_reduced_40 = self.buttonsFactory.createTicketFirstZone('r_40')
         self.btn_reduced_oneway = self.buttonsFactory.createTicketFirstZone('r_oneway')
         self.btn_reduced_twoway = self.buttonsFactory.createTicketFirstZone('r_twoway')
-
         self.widget_reduced_first = self.widgetFactory.createWidget(self.TicketsWidget, 'widget_reduced_first')
-
-        self.grid_reduced_tickets_first = QtWidgets.QGridLayout(self.widget_reduced_first)
-        self.grid_reduced_tickets_first.setContentsMargins(0, 0, 0, 0)
-        self.grid_reduced_tickets_first.setObjectName("grid_reduced_tickets_first")
-        self.grid_reduced_tickets_first.addWidget(self.btn_reduced_20, 1, 0, 1, 1)
-        self.grid_reduced_tickets_first.addWidget(self.btn_reduced_40, 2, 0, 1, 1)
-        self.grid_reduced_tickets_first.addWidget(self.btn_reduced_oneway, 3, 0, 1, 1)
-        self.grid_reduced_tickets_first.addWidget(self.btn_reduced_twoway, 4, 0, 1, 1)
+        self.grid_reduced_tickets_first = self.gridFactory.createGrid( self.widget_reduced_first,'zone1','r',[
+            self.btn_reduced_20, self.btn_reduced_40, self.btn_reduced_oneway, self.btn_reduced_twoway
+        ])
 
         # NORMAL ZONE 1
         self.btn_normal_20 = self.buttonsFactory.createTicketFirstZone('n_20')
         self.btn_normal_40 = self.buttonsFactory.createTicketFirstZone('n_40')
         self.btn_normal_oneway = self.buttonsFactory.createTicketFirstZone('n_oneway')
         self.btn_normal_twoway = self.buttonsFactory.createTicketFirstZone('n_twoway')
-
         self.widget_normal_first = self.widgetFactory.createWidget(self.TicketsWidget, 'widget_normal_first')
-
-        self.grid_normal_tickets_first = QtWidgets.QGridLayout(self.widget_normal_first)
-        self.grid_normal_tickets_first.setContentsMargins(0, 0, 0, 0)
-        self.grid_normal_tickets_first.setObjectName("grid_normal_tickets_first")
-        self.grid_normal_tickets_first.addWidget(self.btn_normal_20, 1, 0, 1, 1)
-        self.grid_normal_tickets_first.addWidget(self.btn_normal_40, 2, 0, 1, 1)
-        self.grid_normal_tickets_first.addWidget(self.btn_normal_oneway, 3, 0, 1, 1)
-        self.grid_normal_tickets_first.addWidget(self.btn_normal_twoway, 4, 0, 1, 1)
+        self.grid_normal_tickets_first = self.gridFactory.createGrid( self.widget_normal_first,'zone1','n',[
+            self.btn_normal_20, self.btn_normal_40, self.btn_normal_oneway, self.btn_normal_twoway
+        ])
 
         # REDUCED ZONE 2
         self.btn_reduced_20_2 = self.buttonsFactory.createTicketSecondZone('r_20')
+        print(self.btn_reduced_20_2.text())
         self.btn_reduced_40_2 = self.buttonsFactory.createTicketSecondZone('r_40')
         self.btn_reduced_oneway_2 = self.buttonsFactory.createTicketSecondZone('r_oneway')
         self.btn_reduced_twoway_2 = self.buttonsFactory.createTicketSecondZone('r_twoway')
-
         self.widget_reduced_second = self.widgetFactory.createWidget(self.TicketsWidget, 'widget_reduced_second')
-
-        self.grid_reduced_tickets_second = QtWidgets.QGridLayout(self.widget_reduced_second)
-        self.grid_reduced_tickets_second.setContentsMargins(0, 0, 0, 0)
-        self.grid_reduced_tickets_second.setObjectName("grid_reduced_tickets_second")
-
-        self.grid_reduced_tickets_second.addWidget(self.btn_reduced_20_2, 1, 0, 1, 1)
-        self.grid_reduced_tickets_second.addWidget(self.btn_reduced_40_2, 2, 0, 1, 1)
-        self.grid_reduced_tickets_second.addWidget(self.btn_reduced_oneway_2, 3, 0, 1, 1)
-        self.grid_reduced_tickets_second.addWidget(self.btn_reduced_twoway_2, 4, 0, 1, 1)
+        self.grid_reduced_tickets_second = self.gridFactory.createGrid( self.widget_reduced_second,'zone2','r',[
+            self.btn_reduced_20_2, self.btn_reduced_40_2, self.btn_reduced_oneway_2, self.btn_reduced_twoway_2
+        ])
 
         # NORMAL ZONE 2
         self.btn_normal_20_2 = self.buttonsFactory.createTicketSecondZone('n_20')
         self.btn_normal_40_2 = self.buttonsFactory.createTicketSecondZone('n_40')
         self.btn_normal_oneway_2 = self.buttonsFactory.createTicketSecondZone('n_oneway')
         self.btn_normal_twoway_2 = self.buttonsFactory.createTicketSecondZone('n_twoway')
-
         self.widget_normal_second = self.widgetFactory.createWidget(self.TicketsWidget, 'widget_normal_second')
-
-        self.grid_normal_tickets_second = QtWidgets.QGridLayout(self.widget_normal_second)
-        self.grid_normal_tickets_second.setContentsMargins(0, 0, 0, 0)
-        self.grid_normal_tickets_second.setObjectName("grid_normal_tickets_second")
-
-        self.grid_normal_tickets_second.addWidget(self.btn_normal_20_2, 1, 0, 1, 1)
-        self.grid_normal_tickets_second.addWidget(self.btn_normal_40_2, 2, 0, 1, 1)
-        self.grid_normal_tickets_second.addWidget(self.btn_normal_oneway_2, 3, 0, 1, 1)
-        self.grid_normal_tickets_second.addWidget(self.btn_normal_twoway_2, 4, 0, 1, 1)
+        self.grid_normal_tickets_second = self.gridFactory.createGrid( self.widget_normal_second,'zone2','n',[
+            self.btn_normal_20_2, self.btn_normal_40_2, self.btn_normal_oneway_2, self.btn_normal_twoway_2
+        ])
 
     def generateCosmetics(self):
         self.line = QtWidgets.QFrame(self.TicketsWidget)
@@ -333,28 +260,3 @@ class TicketsView(QtWidgets.QMainWindow):
         self.line_7.setFrameShape(QtWidgets.QFrame.VLine)
         self.line_7.setFrameShadow(QtWidgets.QFrame.Sunken)
         self.line_7.setObjectName("line_7")
-
-    def retranslateUi(self):
-        _translate = QtCore.QCoreApplication.translate
-
-
-        self.btn_reduced_20_2_count.setText(_translate("MainWindow", "0"))
-        self.btn_reduced_40_2_count.setText(_translate("MainWindow", "0"))
-        self.btn_reduced_oneway_2_count.setText(_translate("MainWindow", "0"))
-        self.btn_reduced_twoway_2_count.setText(_translate("MainWindow", "0"))
-
-        self.btn_normal_20_count.setText(_translate("MainWindow", "0"))
-        self.btn_normal_40_count.setText(_translate("MainWindow", "0"))
-        self.btn_normal_oneway_count.setText(_translate("MainWindow", "0"))
-        self.btn_normal_twoway_count.setText(_translate("MainWindow", "0"))
-        self.btn_normal_20_2_count.setText(_translate("MainWindow", "0"))
-        self.btn_normal_40_2_count.setText(_translate("MainWindow", "0"))
-        self.btn_normal_oneway_2_count.setText(_translate("MainWindow", "0"))
-        self.btn_normal_twoway_2_count.setText(_translate("MainWindow", "0"))
-
-        self.btn_reduced_20_count.setText(_translate("MainWindow", "0"))
-        self.btn_reduced_40_count.setText(_translate("MainWindow", "0"))
-        self.btn_reduced_oneway_count.setText(_translate("MainWindow", "0"))
-        self.btn_reduced_twoway_count.setText(_translate("MainWindow", "0"))
-
-        self.show()
