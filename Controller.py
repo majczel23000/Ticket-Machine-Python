@@ -85,7 +85,7 @@ class Controller:
             self.order.cost -= object_to_remove.price
             self.order.cost = float(round(Decimal(self.order.cost), 2))
             self.update_informations()
-            # zmniejsz licznik
+            # reduce counter
             counter = self.tickets_view.findChild(QLabel, label)
             counter_int = int(counter.text())
             if counter_int>0:

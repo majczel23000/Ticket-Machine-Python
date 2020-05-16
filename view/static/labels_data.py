@@ -7,9 +7,9 @@ labelsData = {
     "label_strefa_1": {"geometry": QtCore.QRect(20, 170, 21, 201), "text": "S T R E F A  I", "alignment": QtCore.Qt.AlignCenter},
     "label_strefa_2": {"geometry": QtCore.QRect(20, 390, 21, 241), "text": "S T R E F A I + II", "alignment": QtCore.Qt.AlignCenter},
 
-    "label_total_cost": {"geometry": 0, "text": "Do zapłaty:", "alignment": 0},
+    "label_total_cost": {"geometry": 0, "text": "Do zapłaty:", "alignment": QtCore.Qt.AlignCenter},
     "label_total_cost_value": {"geometry": 0, "text": "0.00", "alignment": 0},
-    "label_tickets_count": {"geometry": 0, "text": "Ilość biletów:", "alignment": 0},
+    "label_tickets_count": {"geometry": 0, "text": "Ilość biletów:", "alignment": QtCore.Qt.AlignCenter},
     "label_tickets_count_value": {"geometry": 0, "text": "0", "alignment": 0},
 
     "btn_reduced_20_2_count": {"geometry": 0, "text": "0", "alignment": QtCore.Qt.AlignCenter},

@@ -5,5 +5,6 @@ class Widget(QtWidgets.QWidget):
     def __init__(self, parent, geometry, name):
         super(Widget, self).__init__()
         self.setParent(parent)
-        self.setGeometry(geometry)
+        if geometry != 0:
+            self.setGeometry(geometry)
         self.setObjectName(name)
