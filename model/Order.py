@@ -1,6 +1,6 @@
-from Banknote import Banknote
-from Coin import Coin
-from Ticket import Ticket
+from model.Banknote import Banknote
+from model.Coin import Coin
+from model.Ticket import TicketReducedZone1, TicketReducedZone2, TicketNormalZone1, TicketNormalZone2
 from decimal import Decimal
 
 class Order:
@@ -15,11 +15,10 @@ class Order:
         self.quantity = 0
 
     def add_ticket(self, ticket):
-        if isinstance(ticket, Ticket):
+        if isinstance(ticket, TicketReducedZone1) or isinstance(ticket, TicketReducedZone2) \
+                or isinstance(ticket, TicketNormalZone1) or isinstance(ticket, TicketNormalZone2):
             self.tickets.append(ticket)
-            print('cost1', self.cost)
             self.cost += float(ticket.price)
-            print('cost', self.cost)
             self.cost = float(round(Decimal(self.cost), 2))
 
             self.quantity += 1

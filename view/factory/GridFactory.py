@@ -1,5 +1,5 @@
-from model.Grid import Grid
-from common.grid_data import gridsData
+from view.model.Grid import Grid
+from view.static.grid_data import gridsData
 
 
 class GridFactory:

@@ -1,5 +1,5 @@
-from model.Button import Button
-from common.buttons_data import buttonsData
+from view.model.Button import Button
+from view.static.buttons_data import buttonsData
 
 
 class ButtonsFactory:

@@ -1,5 +1,5 @@
-from model.Label import Label
-from common.labels_data import labelsData
+from view.model.Label import Label
+from view.static.labels_data import labelsData
 
 class LabelFactory:
     def createLabel(self, parent, code, font):

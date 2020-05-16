@@ -1,4 +1,4 @@
-from model.Vbox import Vbox
+from view.model.Vbox import Vbox
 
 
 class VboxFactory:

@@ -1,10 +1,10 @@
 from PyQt5 import QtCore, QtWidgets
-from factory.WidgetFactory import WidgetFactory
-from factory.ButtonsFactory import ButtonsFactory
-from factory.FontFactory import FontFactory
-from factory.GridFactory import GridFactory
-from factory.LabelsFactory import LabelFactory
-from factory.VboxFactory import VboxFactory
+from view.factory.WidgetFactory import WidgetFactory
+from view.factory.ButtonsFactory import ButtonsFactory
+from view.factory.FontFactory import FontFactory
+from view.factory.GridFactory import GridFactory
+from view.factory.LabelsFactory import LabelFactory
+from view.factory.VboxFactory import VboxFactory
 
 
 class TicketsView(QtWidgets.QMainWindow):

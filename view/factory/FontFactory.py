@@ -1,4 +1,4 @@
-from model.Font import Font
+from view.model.Font import Font
 
 
 class FontFactory:

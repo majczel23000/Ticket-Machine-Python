@@ -1,5 +1,6 @@
 class TicketMachine:
     def __init__(self):
+        # 0.01 oznacza 1 grosz, 20.00 oznacza 20 zł itp itd
         self.storage = {
             '0.01': 100, '0.02': 100, '0.05': 100, '0.10': 100, '0.20': 100,
             '0.50': 100, '1.00': 100, '2.00': 100, '5.00': 100, '10.00': 10,

@@ -1,5 +1,5 @@
-from model.Widget import Widget
-from common.widget_data import widgetData
+from view.model.Widget import Widget
+from view.static.widget_data import widgetData
 
 
 class WidgetFactory:
