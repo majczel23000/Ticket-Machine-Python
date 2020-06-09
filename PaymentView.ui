@@ -22,6 +22,10 @@
   <property name="windowTitle">
    <string>Ticket Machine - PINDOL</string>
   </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>assets/50groszy.png</normaloff>assets/50groszy.png</iconset>
+  </property>
   <property name="autoFillBackground">
    <bool>false</bool>
   </property>
@@ -59,338 +63,300 @@
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="Line" name="line">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>100</y>
-      <width>951</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="orientation">
-     <enum>Qt::Horizontal</enum>
-    </property>
-   </widget>
-   <widget class="Line" name="line_3">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>640</y>
-      <width>951</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="orientation">
-     <enum>Qt::Horizontal</enum>
-    </property>
-   </widget>
-   <widget class="QWidget" name="horizontalLayoutWidget">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>659</y>
-      <width>581</width>
-      <height>71</height>
-     </rect>
-    </property>
-    <layout class="QHBoxLayout" name="horizontalLayout">
-     <item>
-      <widget class="QLabel" name="label_total_cost">
-       <property name="text">
-        <string>Do zapłaty:</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignCenter</set>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLabel" name="label_total_cost_value">
-       <property name="text">
-        <string>0.00</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignCenter</set>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLabel" name="label_tickets_count">
-       <property name="text">
-        <string>Ilość biletów:</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignCenter</set>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLabel" name="label_tickets_count_value">
-       <property name="text">
-        <string>0</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignCenter</set>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </widget>
-   <widget class="Line" name="line_4">
-    <property name="geometry">
-     <rect>
-      <x>263</x>
-      <y>650</y>
-      <width>20</width>
-      <height>101</height>
-     </rect>
-    </property>
-    <property name="orientation">
-     <enum>Qt::Vertical</enum>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="payment">
-    <property name="geometry">
-     <rect>
-      <x>610</x>
-      <y>660</y>
-      <width>331</width>
-      <height>61</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>15</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string>Przejdź do płatności</string>
-    </property>
-   </widget>
-   <widget class="Line" name="line_6">
-    <property name="geometry">
-     <rect>
-      <x>590</x>
-      <y>650</y>
-      <width>20</width>
-      <height>91</height>
-     </rect>
-    </property>
-    <property name="orientation">
-     <enum>Qt::Vertical</enum>
-    </property>
-   </widget>
    <widget class="QWidget" name="gridLayoutWidget">
     <property name="geometry">
      <rect>
       <x>40</x>
       <y>180</y>
       <width>341</width>
-      <height>261</height>
+      <height>341</height>
      </rect>
     </property>
-    <layout class="QGridLayout" name="gridLayout_2">
-     <item row="0" column="0">
-      <widget class="QLabel" name="label_2">
-       <property name="maximumSize">
-        <size>
-         <width>80</width>
-         <height>80</height>
-        </size>
-       </property>
-       <property name="autoFillBackground">
-        <bool>false</bool>
-       </property>
-       <property name="styleSheet">
-        <string notr="true"/>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-       <property name="pixmap">
-        <pixmap>assets/1grosz.jpg</pixmap>
-       </property>
-       <property name="scaledContents">
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="1">
-      <widget class="QLabel" name="label_6">
-       <property name="maximumSize">
-        <size>
-         <width>80</width>
-         <height>80</height>
-        </size>
-       </property>
-       <property name="autoFillBackground">
-        <bool>false</bool>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-       <property name="pixmap">
-        <pixmap>assets/20groszy.png</pixmap>
-       </property>
-       <property name="scaledContents">
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="0">
-      <widget class="QLabel" name="label_5">
-       <property name="maximumSize">
-        <size>
-         <width>80</width>
-         <height>80</height>
-        </size>
-       </property>
-       <property name="autoFillBackground">
-        <bool>false</bool>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-       <property name="pixmap">
-        <pixmap>assets/10groszy.png</pixmap>
-       </property>
-       <property name="scaledContents">
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="2">
-      <widget class="QLabel" name="label_4">
-       <property name="maximumSize">
-        <size>
-         <width>80</width>
-         <height>80</height>
-        </size>
-       </property>
-       <property name="autoFillBackground">
-        <bool>false</bool>
-       </property>
-       <property name="styleSheet">
-        <string notr="true"/>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-       <property name="pixmap">
-        <pixmap>assets/5groszy.jpg</pixmap>
-       </property>
-       <property name="scaledContents">
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
+    <layout class="QGridLayout" name="grid_coins">
      <item row="1" column="2">
-      <widget class="QLabel" name="label_7">
+      <widget class="QPushButton" name="button_50_gr">
        <property name="maximumSize">
         <size>
-         <width>80</width>
-         <height>80</height>
+         <width>100</width>
+         <height>100</height>
         </size>
        </property>
        <property name="autoFillBackground">
         <bool>false</bool>
        </property>
+       <property name="styleSheet">
+        <string notr="true">background: url(1grosz.jpg)</string>
+       </property>
        <property name="text">
         <string/>
        </property>
-       <property name="pixmap">
-        <pixmap>assets/50groszy.png</pixmap>
+       <property name="icon">
+        <iconset>
+         <normaloff>assets/50groszy.png</normaloff>assets/50groszy.png</iconset>
        </property>
-       <property name="scaledContents">
+       <property name="iconSize">
+        <size>
+         <width>80</width>
+         <height>80</height>
+        </size>
+       </property>
+       <property name="flat">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="0">
+      <widget class="QPushButton" name="button_1_gr">
+       <property name="maximumSize">
+        <size>
+         <width>100</width>
+         <height>100</height>
+        </size>
+       </property>
+       <property name="autoFillBackground">
+        <bool>false</bool>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background: url(1grosz.jpg)</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>assets/1grosz.jpg</normaloff>assets/1grosz.jpg</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>80</width>
+         <height>80</height>
+        </size>
+       </property>
+       <property name="flat">
         <bool>true</bool>
        </property>
       </widget>
      </item>
      <item row="0" column="1">
-      <widget class="QLabel" name="label_3">
+      <widget class="QPushButton" name="button_2_gr">
        <property name="maximumSize">
         <size>
-         <width>80</width>
-         <height>80</height>
+         <width>100</width>
+         <height>100</height>
         </size>
        </property>
        <property name="autoFillBackground">
         <bool>false</bool>
        </property>
+       <property name="styleSheet">
+        <string notr="true">background: url(1grosz.jpg)</string>
+       </property>
        <property name="text">
         <string/>
        </property>
-       <property name="pixmap">
-        <pixmap>assets/2grosze.jpg</pixmap>
+       <property name="icon">
+        <iconset>
+         <normaloff>assets/2grosze.jpg</normaloff>assets/2grosze.jpg</iconset>
        </property>
-       <property name="scaledContents">
+       <property name="iconSize">
+        <size>
+         <width>80</width>
+         <height>80</height>
+        </size>
+       </property>
+       <property name="flat">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="2">
+      <widget class="QPushButton" name="button_5_gr">
+       <property name="maximumSize">
+        <size>
+         <width>100</width>
+         <height>100</height>
+        </size>
+       </property>
+       <property name="autoFillBackground">
+        <bool>false</bool>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background: url(1grosz.jpg)</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>assets/5groszy.jpg</normaloff>assets/5groszy.jpg</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>80</width>
+         <height>80</height>
+        </size>
+       </property>
+       <property name="flat">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QPushButton" name="button_20_gr">
+       <property name="maximumSize">
+        <size>
+         <width>100</width>
+         <height>100</height>
+        </size>
+       </property>
+       <property name="autoFillBackground">
+        <bool>false</bool>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background: url(1grosz.jpg)</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>assets/20groszy.png</normaloff>assets/20groszy.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>80</width>
+         <height>80</height>
+        </size>
+       </property>
+       <property name="flat">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QPushButton" name="button_10_gr">
+       <property name="maximumSize">
+        <size>
+         <width>100</width>
+         <height>100</height>
+        </size>
+       </property>
+       <property name="autoFillBackground">
+        <bool>false</bool>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background: url(1grosz.jpg)</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>assets/10groszy.png</normaloff>assets/10groszy.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>80</width>
+         <height>80</height>
+        </size>
+       </property>
+       <property name="flat">
         <bool>true</bool>
        </property>
       </widget>
      </item>
      <item row="2" column="0">
-      <widget class="QLabel" name="label_8">
+      <widget class="QPushButton" name="button_1_zl">
        <property name="maximumSize">
         <size>
-         <width>80</width>
-         <height>80</height>
+         <width>100</width>
+         <height>100</height>
         </size>
        </property>
        <property name="autoFillBackground">
         <bool>false</bool>
        </property>
+       <property name="styleSheet">
+        <string notr="true">background: url(1grosz.jpg)</string>
+       </property>
        <property name="text">
         <string/>
        </property>
-       <property name="pixmap">
-        <pixmap>assets/1zloty.png</pixmap>
+       <property name="icon">
+        <iconset>
+         <normaloff>assets/1zloty.png</normaloff>assets/1zloty.png</iconset>
        </property>
-       <property name="scaledContents">
+       <property name="iconSize">
+        <size>
+         <width>80</width>
+         <height>80</height>
+        </size>
+       </property>
+       <property name="flat">
         <bool>true</bool>
        </property>
       </widget>
      </item>
      <item row="2" column="1">
-      <widget class="QLabel" name="label_9">
+      <widget class="QPushButton" name="button_2_zl">
        <property name="maximumSize">
         <size>
-         <width>80</width>
-         <height>80</height>
+         <width>100</width>
+         <height>100</height>
         </size>
        </property>
        <property name="autoFillBackground">
         <bool>false</bool>
        </property>
+       <property name="styleSheet">
+        <string notr="true">background: url(1grosz.jpg)</string>
+       </property>
        <property name="text">
         <string/>
        </property>
-       <property name="pixmap">
-        <pixmap>assets/2zlote.png</pixmap>
+       <property name="icon">
+        <iconset>
+         <normaloff>assets/2zlote.png</normaloff>assets/2zlote.png</iconset>
        </property>
-       <property name="scaledContents">
+       <property name="iconSize">
+        <size>
+         <width>80</width>
+         <height>80</height>
+        </size>
+       </property>
+       <property name="flat">
         <bool>true</bool>
        </property>
       </widget>
      </item>
      <item row="2" column="2">
-      <widget class="QLabel" name="label_10">
+      <widget class="QPushButton" name="button_5_zl">
        <property name="maximumSize">
         <size>
-         <width>80</width>
-         <height>80</height>
+         <width>100</width>
+         <height>100</height>
         </size>
        </property>
        <property name="autoFillBackground">
         <bool>false</bool>
        </property>
+       <property name="styleSheet">
+        <string notr="true">background: url(1grosz.jpg)</string>
+       </property>
        <property name="text">
         <string/>
        </property>
-       <property name="pixmap">
-        <pixmap>assets/5zlotych.png</pixmap>
+       <property name="icon">
+        <iconset>
+         <normaloff>assets/5zlotych.png</normaloff>assets/5zlotych.png</iconset>
        </property>
-       <property name="scaledContents">
+       <property name="iconSize">
+        <size>
+         <width>80</width>
+         <height>80</height>
+        </size>
+       </property>
+       <property name="flat">
         <bool>true</bool>
        </property>
       </widget>
@@ -403,12 +369,12 @@
       <x>470</x>
       <y>180</y>
       <width>421</width>
-      <height>331</height>
+      <height>401</height>
      </rect>
     </property>
-    <layout class="QGridLayout" name="gridLayout_3">
+    <layout class="QGridLayout" name="grid_banknote">
      <item row="0" column="0">
-      <widget class="QLabel" name="label_11">
+      <widget class="QPushButton" name="button_10_zl">
        <property name="maximumSize">
         <size>
          <width>200</width>
@@ -419,21 +385,28 @@
         <bool>false</bool>
        </property>
        <property name="styleSheet">
-        <string notr="true">border: 3px solid black</string>
+        <string notr="true">background: url(1grosz.jpg)</string>
        </property>
        <property name="text">
         <string/>
        </property>
-       <property name="pixmap">
-        <pixmap>assets/10zlotych.PNG</pixmap>
+       <property name="icon">
+        <iconset>
+         <normaloff>assets/10zlotych.PNG</normaloff>assets/10zlotych.PNG</iconset>
        </property>
-       <property name="scaledContents">
+       <property name="iconSize">
+        <size>
+         <width>200</width>
+         <height>100</height>
+        </size>
+       </property>
+       <property name="flat">
         <bool>true</bool>
        </property>
       </widget>
      </item>
      <item row="0" column="1">
-      <widget class="QLabel" name="label_12">
+      <widget class="QPushButton" name="button_20_zl">
        <property name="maximumSize">
         <size>
          <width>200</width>
@@ -444,21 +417,28 @@
         <bool>false</bool>
        </property>
        <property name="styleSheet">
-        <string notr="true">border: 3px solid black</string>
+        <string notr="true">background: url(1grosz.jpg)</string>
        </property>
        <property name="text">
         <string/>
        </property>
-       <property name="pixmap">
-        <pixmap>assets/20zlotych.PNG</pixmap>
+       <property name="icon">
+        <iconset>
+         <normaloff>assets/20zlotych.PNG</normaloff>assets/20zlotych.PNG</iconset>
        </property>
-       <property name="scaledContents">
+       <property name="iconSize">
+        <size>
+         <width>200</width>
+         <height>100</height>
+        </size>
+       </property>
+       <property name="flat">
         <bool>true</bool>
        </property>
       </widget>
      </item>
      <item row="1" column="0">
-      <widget class="QLabel" name="label_13">
+      <widget class="QPushButton" name="button_50_zl">
        <property name="maximumSize">
         <size>
          <width>200</width>
@@ -469,46 +449,28 @@
         <bool>false</bool>
        </property>
        <property name="styleSheet">
-        <string notr="true">border: 3px solid black</string>
+        <string notr="true">background: url(1grosz.jpg)</string>
        </property>
        <property name="text">
         <string/>
        </property>
-       <property name="pixmap">
-        <pixmap>assets/50zlotych.PNG</pixmap>
+       <property name="icon">
+        <iconset>
+         <normaloff>assets/50zlotych.PNG</normaloff>assets/50zlotych.PNG</iconset>
        </property>
-       <property name="scaledContents">
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="0">
-      <widget class="QLabel" name="label_15">
-       <property name="maximumSize">
+       <property name="iconSize">
         <size>
          <width>200</width>
          <height>100</height>
         </size>
        </property>
-       <property name="autoFillBackground">
-        <bool>false</bool>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">border: 3px solid black</string>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-       <property name="pixmap">
-        <pixmap>assets/200zlotych.jpg</pixmap>
-       </property>
-       <property name="scaledContents">
+       <property name="flat">
         <bool>true</bool>
        </property>
       </widget>
      </item>
      <item row="1" column="1">
-      <widget class="QLabel" name="label_14">
+      <widget class="QPushButton" name="button_100_zl">
        <property name="maximumSize">
         <size>
          <width>200</width>
@@ -519,21 +481,60 @@
         <bool>false</bool>
        </property>
        <property name="styleSheet">
-        <string notr="true">border: 3px solid black</string>
+        <string notr="true">background: url(1grosz.jpg)</string>
        </property>
        <property name="text">
         <string/>
        </property>
-       <property name="pixmap">
-        <pixmap>assets/100zlotych.jpg</pixmap>
+       <property name="icon">
+        <iconset>
+         <normaloff>assets/100zlotych.jpg</normaloff>assets/100zlotych.jpg</iconset>
        </property>
-       <property name="scaledContents">
+       <property name="iconSize">
+        <size>
+         <width>200</width>
+         <height>100</height>
+        </size>
+       </property>
+       <property name="flat">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="0">
+      <widget class="QPushButton" name="button_200_zl">
+       <property name="maximumSize">
+        <size>
+         <width>200</width>
+         <height>100</height>
+        </size>
+       </property>
+       <property name="autoFillBackground">
+        <bool>false</bool>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background: url(1grosz.jpg)</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>assets/200zlotych.jpg</normaloff>assets/200zlotych.jpg</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>200</width>
+         <height>100</height>
+        </size>
+       </property>
+       <property name="flat">
         <bool>true</bool>
        </property>
       </widget>
      </item>
      <item row="2" column="1">
-      <widget class="QLabel" name="label_16">
+      <widget class="QPushButton" name="button_500_zl">
        <property name="maximumSize">
         <size>
          <width>200</width>
@@ -544,22 +545,29 @@
         <bool>false</bool>
        </property>
        <property name="styleSheet">
-        <string notr="true">border: 3px solid black</string>
+        <string notr="true">background: url(1grosz.jpg)</string>
        </property>
        <property name="text">
         <string/>
        </property>
-       <property name="pixmap">
-        <pixmap>assets/500zlotych.PNG</pixmap>
+       <property name="icon">
+        <iconset>
+         <normaloff>assets/500zlotych.PNG</normaloff>assets/500zlotych.PNG</iconset>
        </property>
-       <property name="scaledContents">
+       <property name="iconSize">
+        <size>
+         <width>200</width>
+         <height>100</height>
+        </size>
+       </property>
+       <property name="flat">
         <bool>true</bool>
        </property>
       </widget>
      </item>
     </layout>
    </widget>
-   <widget class="QLabel" name="label">
+   <widget class="QLabel" name="label_text">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -570,7 +578,7 @@
     </property>
     <property name="font">
      <font>
-      <pointsize>11</pointsize>
+      <pointsize>12</pointsize>
      </font>
     </property>
     <property name="text">
@@ -584,17 +592,17 @@
     <property name="geometry">
      <rect>
       <x>30</x>
-      <y>540</y>
+      <y>640</y>
       <width>891</width>
       <height>81</height>
      </rect>
     </property>
-    <layout class="QHBoxLayout" name="horizontalLayout_2">
+    <layout class="QHBoxLayout" name="horizontal_payment">
      <property name="spacing">
       <number>0</number>
      </property>
      <item>
-      <widget class="QLabel" name="label_17">
+      <widget class="QLabel" name="label_payment_left">
        <property name="styleSheet">
         <string notr="true">font-size: 15px; border: 3px solid black; color: #f6f6f6; background: #3b3a30</string>
        </property>
@@ -607,7 +615,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QLabel" name="label_18">
+      <widget class="QLabel" name="label_payment_left_value">
        <property name="styleSheet">
         <string notr="true">border: 3px solid black; color: #f6f6f6; background: #484f4f; font-size: 15px; </string>
        </property>
@@ -620,7 +628,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QLabel" name="label_19">
+      <widget class="QLabel" name="label_payment_change">
        <property name="styleSheet">
         <string notr="true">border: 3px solid black; color: #f6f6f6; background: #3b3a30; font-size: 15px; </string>
        </property>
@@ -633,12 +641,53 @@
       </widget>
      </item>
      <item>
-      <widget class="QLabel" name="label_20">
+      <widget class="QLabel" name="label_payment_change_value">
        <property name="styleSheet">
         <string notr="true">border: 3px solid black; color: #f6f6f6; background: #484f4f; font-size: 15px; </string>
        </property>
        <property name="text">
         <string>0.00 zł</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="horizontalLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>540</y>
+      <width>231</width>
+      <height>80</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontal_ticket_count">
+     <property name="spacing">
+      <number>0</number>
+     </property>
+     <item>
+      <widget class="QLabel" name="label_ticket_text">
+       <property name="styleSheet">
+        <string notr="true">font-size: 15px; border: 3px solid black; color: #f6f6f6; background: #3b3a30</string>
+       </property>
+       <property name="text">
+        <string>Ilość biletów:</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_ticket_count">
+       <property name="styleSheet">
+        <string notr="true">border: 3px solid black; color: #f6f6f6; background: #484f4f; font-size: 15px; </string>
+       </property>
+       <property name="text">
+        <string>4</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>

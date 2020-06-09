@@ -7,7 +7,7 @@ from view.factory.LabelsFactory import LabelFactory
 from view.factory.VboxFactory import VboxFactory
 
 
-class TicketsView(QtWidgets.QMainWindow):
+class TicketsView(QtWidgets.QWidget):
     def __init__(self):
         super(TicketsView, self).__init__()
         self.buttonsFactory = ButtonsFactory()
@@ -26,7 +26,7 @@ class TicketsView(QtWidgets.QMainWindow):
         self.setFont(font)
         self.generateMainLabels(font)
         self.generateBottomView(font)
-        self.setCentralWidget(self.TicketsWidget)
+        # self.setCentralWidget(self.TicketsWidget)
         self.generateButtonsAndLabelsPlusMinus(font)
         self.generateButtonsTicketsWithNames()
         self.generateCosmetics()
@@ -44,7 +44,9 @@ class TicketsView(QtWidgets.QMainWindow):
 
     def setupUi(self):
         self.setObjectName("TicketsWidget")
-        self.resize(950, 732)
+        # self.setWindowTitle("Biletomat razpin")
+        # self.setStyleSheet("QMainWindow {background: 'white';}")
+        # self.resize(950, 732)
         self.TicketsWidget = QtWidgets.QWidget(self)
         self.TicketsWidget.setObjectName("TicketsWidget")
 
