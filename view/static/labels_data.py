@@ -1,7 +1,7 @@
 from PyQt5 import QtCore
 
 labelsData = {
-    "label_title": {"geometry": QtCore.QRect(0, 0, 861, 111), "text": "--- AUTOMAT BILETOWY RAZPIN ---", "alignment" :QtCore.Qt.AlignCenter},
+    "label_title": {"geometry": QtCore.QRect(0, 0, 951, 111), "text": "--- AUTOMAT BILETOWY RAZPIN ---", "alignment" :QtCore.Qt.AlignCenter},
     "label_tickets_reduced": {"geometry": QtCore.QRect(520, 140, 221, 31), "text": "ULGOWE:", "alignment": QtCore.Qt.AlignCenter},
     "label_tickets_normal": {"geometry": QtCore.QRect(80, 130, 221, 28), "text": "NORMALNE:", "alignment": QtCore.Qt.AlignCenter},
     "label_strefa_1": {"geometry": QtCore.QRect(20, 170, 21, 201), "text": "S T R E F A  I", "alignment": QtCore.Qt.AlignCenter},

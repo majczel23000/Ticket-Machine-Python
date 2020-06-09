@@ -17,24 +17,36 @@ class TicketsView(QtWidgets.QMainWindow):
         self.labelFactory = LabelFactory()
         self.vboxFactory = VboxFactory()
         self.setupUi()
+        self.setupTicketsView()
         self.show()
 
-    def setupUi(self):
-        self.setObjectName("TicketsWidget")
-        self.resize(950, 732)
+    # pokazanie widoku wybierania biletów
+    def setupTicketsView(self):
         font = self.fontFactory.createFont('Consolas', 9, True, False, 75)
         self.setFont(font)
-        self.TicketsWidget = QtWidgets.QWidget(self)
-        self.TicketsWidget.setObjectName("TicketsWidget")
-
         self.generateMainLabels(font)
         self.generateBottomView(font)
-
         self.setCentralWidget(self.TicketsWidget)
         self.generateButtonsAndLabelsPlusMinus(font)
         self.generateButtonsTicketsWithNames()
         self.generateCosmetics()
         QtCore.QMetaObject.connectSlotsByName(self)
+
+    # pokazanie widoku płatności
+    def setupPaymentView(self):
+        font = self.fontFactory.createFont('Consolas', 9, True, False, 75)
+        self.setFont(font)
+
+    # pokazanie widoku potwierdzającego zakup
+    def setupConfirmationView(self):
+        font = self.fontFactory.createFont('Consolas', 9, True, False, 75)
+        self.setFont(font)
+
+    def setupUi(self):
+        self.setObjectName("TicketsWidget")
+        self.resize(950, 732)
+        self.TicketsWidget = QtWidgets.QWidget(self)
+        self.TicketsWidget.setObjectName("TicketsWidget")
 
     def generateMainLabels(self, font):
         font.setPointSize(18)

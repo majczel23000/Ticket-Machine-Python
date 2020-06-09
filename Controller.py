@@ -62,6 +62,9 @@ class Controller:
         self.tickets_view.btn_reduced_oneway_2_minus.clicked.connect(lambda: self.remove_ticket('rone_2', 'btn_reduced_oneway_2_count'))
         self.tickets_view.btn_reduced_twoway_2_minus.clicked.connect(lambda: self.remove_ticket('rtwo_2', 'btn_reduced_twoway_2_count'))
 
+        # przejście do płatności
+        self.tickets_view.payment.clicked.connect(lambda: self.go_to_payment_view())
+
     def add_ticket(self, zone_number, price, type, label, code):
         # get label with selected tickets count
         counter = self.tickets_view.findChild(QLabel, label)
@@ -88,6 +91,9 @@ class Controller:
             # reduce counter
             counter = self.tickets_view.findChild(QLabel, label)
             counter_int = int(counter.text())
-            if counter_int>0:
+            if counter_int > 0:
                 counter_int -= 1
             counter.setText(str(counter_int))
+
+    def go_to_payment_view(self):
+        self.tickets_view.TicketsWidget.deleteLater()
