@@ -219,7 +219,6 @@ class TicketsView(QtWidgets.QWidget):
 
         # REDUCED ZONE 2
         self.btn_reduced_20_2 = self.buttonsFactory.createTicketSecondZone('r_20')
-        print(self.btn_reduced_20_2.text())
         self.btn_reduced_40_2 = self.buttonsFactory.createTicketSecondZone('r_40')
         self.btn_reduced_oneway_2 = self.buttonsFactory.createTicketSecondZone('r_oneway')
         self.btn_reduced_twoway_2 = self.buttonsFactory.createTicketSecondZone('r_twoway')

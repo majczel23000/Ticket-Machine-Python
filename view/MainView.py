@@ -1,6 +1,6 @@
-from PyQt5 import QtCore, QtWidgets
+from PyQt5 import QtWidgets
 from view.TicketsView import TicketsView
-from PaymentView import PaymentView
+from view.PaymentView import PaymentView
 
 class MainView(QtWidgets.QMainWindow):
     def __init__(self):
@@ -19,3 +19,4 @@ class MainView(QtWidgets.QMainWindow):
             if self.current_view == "tickets_view":
                 self.tickets_view.deleteLater()
             self.setCentralWidget(self.payment_view)
+            self.current_view == "payment_view"

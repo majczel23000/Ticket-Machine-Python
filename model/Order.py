@@ -22,8 +22,6 @@ class Order:
             self.cost = float(round(Decimal(self.cost), 2))
 
             self.quantity += 1
-        print(self.tickets)
-        print(self.cost)
 
     def insert_coin(self, coin):
         if isinstance(coin, Coin):

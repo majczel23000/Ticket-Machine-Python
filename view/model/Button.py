@@ -8,7 +8,6 @@ class Button(QtWidgets.QPushButton):
         if text != 0:
             self.setText(text)
         if icon != 0:
-            print(icon['icon'])
             iconObj = QtGui.QIcon()
             iconObj.addPixmap(QtGui.QPixmap(icon['icon']), QtGui.QIcon.Normal, QtGui.QIcon.Off)
             self.setMaximumSize(icon['iconSize'])
