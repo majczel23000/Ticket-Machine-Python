@@ -2,7 +2,7 @@ from PyQt5 import QtWidgets
 
 
 class Label(QtWidgets.QLabel):
-    def __init__(self, parent, name, geometry, font, alignment, text):
+    def __init__(self, parent, name, geometry, font, alignment, text, style):
         super(Label, self).__init__()
         self.setParent(parent)
         self.setObjectName(name)
@@ -14,3 +14,5 @@ class Label(QtWidgets.QLabel):
             self.setAlignment(alignment)
         if text != 0:
             self.setText(text)
+        if style != 0:
+            self.setStyleSheet(style)

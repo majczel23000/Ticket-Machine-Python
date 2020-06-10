@@ -18,7 +18,7 @@ class TicketsView(QtWidgets.QWidget):
         self.vboxFactory = VboxFactory()
         self.setupUi()
         self.setupTicketsView()
-        self.show()
+
 
     # pokazanie widoku wybierania biletów
     def setupTicketsView(self):

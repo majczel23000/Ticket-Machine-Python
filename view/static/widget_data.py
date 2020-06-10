@@ -68,5 +68,13 @@ widgetData = {
     "verticalLayoutWidget_12": {
         "geometry": QtCore.QRect(850, 170, 51, 211),
         "name": "verticalLayoutWidget_12"
+    },
+    "horizontal_payment_2": {
+        "geometry": QtCore.QRect(30, 640, 891, 81),
+        "name": "horizontal_payment_2"
+    },
+    "horizontal_payment": {
+        "geometry": QtCore.QRect(30, 540, 231, 80),
+        "name": "horizontal_payment_2"
     }
 }

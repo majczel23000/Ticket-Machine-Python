@@ -14,3 +14,9 @@ class ButtonsFactory:
 
     def createPlusButton(self, name):
         return Button(name, '+')
+
+    def createCoinButton(self, code):
+        return Button(buttonsData['coins'][code]['name'], "", buttonsData['coins'][code]['icon'])
+
+    def createBanknoteButton(self, code):
+        return Button(buttonsData['banknotes'][code]['name'], "", buttonsData['banknotes'][code]['icon'])
