@@ -1,3 +1,7 @@
-class Banknote:
-    def __init__(self, value):
-        self.value = value
+from model.IMoney import IMoney
+
+
+class Banknote(IMoney):
+
+    def get_value(self):
+        return self.value

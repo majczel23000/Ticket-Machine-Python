@@ -1,12 +1,11 @@
 import sys
-
-from PyQt5.QtWidgets import QLabel
-
+from factory.MoneyFactory import MoneyFactory
 from model.Order import *
 from model.TicketMachine import *
 from factory.TicketFactory import TicketFactory
 from pattern.singleton import Singleton
 from view.MainView import *
+
 
 class Controller(metaclass=Singleton):
     def __init__(self):
@@ -15,11 +14,12 @@ class Controller(metaclass=Singleton):
         self.view_helper = ViewHelper()
         self.order = Order()
         self.ticketFactory = TicketFactory()
-        self.assign_actions_to_buttons()
+        self.moneyFactory = MoneyFactory()
+        self.assing_ticket_actions()
         sys.exit(app.exec_())
 
     # przypisanie clicków do poszczególnych buttonów
-    def assign_actions_to_buttons(self):
+    def assing_ticket_actions(self):
         # Normalne I Strefa
         self.view_helper.find_button_by_object_name(self.ticket_machine.get_gui(), 'btn_normal_20_plus').clicked.connect(lambda: self.add_ticket(1, 2.00, 'normal', 'btn_normal_20_count', 'n20'))
         self.view_helper.find_button_by_object_name(self.ticket_machine.get_gui(), 'btn_normal_40_plus').clicked.connect(lambda: self.add_ticket(1, 3.60, 'normal', 'btn_normal_40_count', 'n40'))
@@ -70,6 +70,23 @@ class Controller(metaclass=Singleton):
         # przejście do płatności
         self.view_helper.find_button_by_object_name(self.ticket_machine.get_gui(), 'payment').clicked.connect(lambda: self.change_view("payment"))
 
+    def assign_payment_actions(self):
+        self.view_helper.find_button_by_object_name(self.ticket_machine.get_gui(), 'button_1_gr').clicked.connect(lambda: self.add_money("0.01", 'coin'))
+        self.view_helper.find_button_by_object_name(self.ticket_machine.get_gui(), 'button_2_gr').clicked.connect(lambda: self.add_money("0.02", 'coin'))
+        self.view_helper.find_button_by_object_name(self.ticket_machine.get_gui(), 'button_5_gr').clicked.connect(lambda: self.add_money("0.05", 'coin'))
+        self.view_helper.find_button_by_object_name(self.ticket_machine.get_gui(), 'button_10_gr').clicked.connect(lambda: self.add_money("0.10", 'coin'))
+        self.view_helper.find_button_by_object_name(self.ticket_machine.get_gui(), 'button_20_gr').clicked.connect(lambda: self.add_money("0.20", 'coin'))
+        self.view_helper.find_button_by_object_name(self.ticket_machine.get_gui(), 'button_50_gr').clicked.connect(lambda: self.add_money("0.50", 'coin'))
+        self.view_helper.find_button_by_object_name(self.ticket_machine.get_gui(), 'button_1_zl').clicked.connect(lambda: self.add_money("1.00", 'coin'))
+        self.view_helper.find_button_by_object_name(self.ticket_machine.get_gui(), 'button_2_zl').clicked.connect(lambda: self.add_money("2.00", 'coin'))
+        self.view_helper.find_button_by_object_name(self.ticket_machine.get_gui(), 'button_5_zl').clicked.connect(lambda: self.add_money("5.00", 'coin'))
+        self.view_helper.find_button_by_object_name(self.ticket_machine.get_gui(), 'button_10_zl').clicked.connect(lambda: self.add_money("10.00", 'banknote'))
+        self.view_helper.find_button_by_object_name(self.ticket_machine.get_gui(), 'button_20_zl').clicked.connect(lambda: self.add_money("20.00", 'banknote'))
+        self.view_helper.find_button_by_object_name(self.ticket_machine.get_gui(), 'button_50_zl').clicked.connect(lambda: self.add_money("50.00", 'banknote'))
+        self.view_helper.find_button_by_object_name(self.ticket_machine.get_gui(), 'button_100_zl').clicked.connect(lambda: self.add_money("100.00", 'banknote'))
+        self.view_helper.find_button_by_object_name(self.ticket_machine.get_gui(), 'button_200_zl').clicked.connect(lambda: self.add_money("200.00", 'banknote'))
+        self.view_helper.find_button_by_object_name(self.ticket_machine.get_gui(), 'button_500_zl').clicked.connect(lambda: self.add_money("500.00", 'banknote'))
+
     def add_ticket(self, zone_number, price, type, label, code):
         counter = self.view_helper.find_label_by_object_name(self.ticket_machine.get_gui(), label)
         counter_int = int(counter.text())
@@ -80,16 +97,16 @@ class Controller(metaclass=Singleton):
         self.update_informations()
 
     def update_informations(self):
-        self.view_helper.find_label_by_object_name(self.ticket_machine.get_gui(), "label_tickets_count_value").setText(str(len(self.order.tickets)))
-        self.view_helper.find_label_by_object_name(self.ticket_machine.get_gui(), "label_total_cost_value").setText(str(self.order.cost))
+        self.view_helper.find_label_by_object_name(self.ticket_machine.get_gui(), "label_tickets_count_value").setText(str(len(self.order.get_tickets())))
+        self.view_helper.find_label_by_object_name(self.ticket_machine.get_gui(), "label_total_cost_value").setText(str(self.order.get_cost()))
 
     def remove_ticket(self, code, label):
         # search for specific ticket in list
-        if any(x.code == code for x in self.order.tickets):
-            object_to_remove = next((x for x in self.order.tickets if x.code == code))
+        if any(x.code == code for x in self.order.get_tickets()):
+            object_to_remove = next((x for x in self.order.get_tickets() if x.code == code))
             self.order.tickets.remove(object_to_remove)
-            self.order.cost -= object_to_remove.price
-            self.order.cost = float(round(Decimal(self.order.cost), 2))
+            self.order.set_cost(self.order.get_cost() - object_to_remove.price)
+            self.order.set_cost(float(round(Decimal(self.order.get_cost()), 2)))
             self.update_informations()
             # reduce counter
             counter = self.view_helper.find_label_by_object_name(self.ticket_machine.get_gui(), label)
@@ -99,6 +116,14 @@ class Controller(metaclass=Singleton):
             counter.setText(str(counter_int))
 
     def change_view(self, view_name):
-        if view_name == "payment" and len(self.order.tickets) > 0:
+        if view_name == "payment" and len(self.order.get_tickets()) > 0:
             self.ticket_machine.get_gui().change_view(view_name)
-            self.view_helper.find_label_by_object_name(self.ticket_machine.get_gui(), "label_payment_left_value").setText(str(self.order.cost) + " zł")
+            self.assign_payment_actions()
+            self.view_helper.find_label_by_object_name(self.ticket_machine.get_gui(), "label_payment_left_value").setText(str(self.order.get_cost()) + " zł")
+
+    def add_money(self, value, money_type):
+        money = self.moneyFactory.createMoney(money_type, value)
+        self.order.insert_money(money)
+        if self.order.get_inserted_amount() >= self.order.get_cost():
+            self.change_view("confirmation")
+
