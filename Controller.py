@@ -164,6 +164,10 @@ class Controller(metaclass=Singleton):
             self.ticket_machine.get_gui().change_view(view_name)
             self.assign_payment_actions()
             self.view_helper.find_label_by_object_name(self.ticket_machine.get_gui(), "label_payment_left_value").setText(str(self.order.get_cost()) + " zł")
+            self.view_helper.find_label_by_object_name(self.ticket_machine.get_gui(), "label_ticket_count").setText(
+                str(len(self.order.get_tickets())))
+            self.view_helper.find_label_by_object_name(self.ticket_machine.get_gui(), "label_payment_change_value").setText(str(self.order.get_cost()) + " zł")
+
         elif view_name == "confirmation":
             self.ticket_machine.get_gui().change_view(view_name)
             self.assign_confirmation_actions()
@@ -181,6 +185,19 @@ class Controller(metaclass=Singleton):
         """
         money = self.moneyFactory.createMoney(money_type, value)
         self.order.insert_money(money)
+
+        inserted = self.order.get_inserted_amount()
+        print(inserted)
+
+        remained = self.order.get_cost()
+        print(remained)
+
+        left_to_pay = remained-inserted
+        print(left_to_pay)
+
+        self.view_helper.find_label_by_object_name(self.ticket_machine.get_gui(), "label_payment_left_value").setText(
+            str(left_to_pay)+" zł")
+
         if self.order.get_inserted_amount() >= self.order.get_cost():
             self.change_view("confirmation")
             self.order.calculate_exchange()
@@ -224,3 +241,4 @@ class Controller(metaclass=Singleton):
         label.setVisible(True)
         self.view_helper.find_label_by_object_name(self.ticket_machine.get_gui(), 'label_thanks').show()
         self.view_helper.find_button_by_object_name(self.ticket_machine.get_gui(), 'button_again').setDisabled(False)
+

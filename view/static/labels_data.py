@@ -35,7 +35,7 @@ labelsData = {
     "label_text": {"geometry": QtCore.QRect(10, 110, 931, 61), "text": "Proszę wybrać monety lub banknoty do zapłaty:", "alignment": QtCore.Qt.AlignCenter, "style": 0},
     "label_payment_left": {"geometry": 0, "text": "Pozostało do zapłaty:", "alignment": QtCore.Qt.AlignCenter, "style": "font-size: 15px; border: 3px solid black; color: #f6f6f6; background: #3b3a30"},
     "label_payment_left_value": {"geometry": 0, "text": "0.00zł", "alignment": QtCore.Qt.AlignCenter, "style": "border: 3px solid black; color: #f6f6f6; background: #3b3a30; font-size: 15px; "},
-    "label_payment_change": {"geometry": 0, "text": "Reszta:", "alignment": QtCore.Qt.AlignCenter,
+    "label_payment_change": {"geometry": 0, "text": "Cena biletów:", "alignment": QtCore.Qt.AlignCenter,
                                  "style": "border: 3px solid black; color: #f6f6f6; background: #3b3a30; font-size: 15px; "},
     "label_payment_change_value": {"geometry": 0, "text": "0.00 zł", "alignment": QtCore.Qt.AlignCenter,
                              "style": "border: 3px solid black; color: #f6f6f6; background: #484f4f; font-size: 15px; "},
