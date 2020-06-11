@@ -222,3 +222,5 @@ class Controller(metaclass=Singleton):
         :return: nothing
         """
         label.setVisible(True)
+        self.view_helper.find_label_by_object_name(self.ticket_machine.get_gui(), 'label_thanks').show()
+        self.view_helper.find_button_by_object_name(self.ticket_machine.get_gui(), 'button_again').setDisabled(False)

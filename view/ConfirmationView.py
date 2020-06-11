@@ -60,6 +60,7 @@ class ConfirmationView(QtWidgets.QWidget):
         self.label_your_tickets = self.labelFactory.createLabel(self.ConfirmationWidget, 'label_your_tickets', font)
         self.label_your_change = self.labelFactory.createLabel(self.ConfirmationWidget, 'label_your_change', font)
         self.label_thanks = self.labelFactory.createLabel(self.ConfirmationWidget, 'label_thanks', font)
+        self.label_thanks.hide()
 
     def generateLayouts(self):
         """
@@ -98,3 +99,4 @@ class ConfirmationView(QtWidgets.QWidget):
         self.button_again.setStyleSheet("border: 3px solid black; color: #f6f6f6; background: #3b3a30; font-size: 15px; ")
         self.button_again.setObjectName("button_again")
         self.button_again.setText("Ponowne zakupy")
+        self.button_again.setDisabled(True)
