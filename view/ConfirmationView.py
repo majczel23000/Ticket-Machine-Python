@@ -7,7 +7,17 @@ from view.factory.GridFactory import GridFactory
 
 
 class ConfirmationView(QtWidgets.QWidget):
+    """
+    Confirmation view class of QWidget type
+    """
+
     def __init__(self):
+        """
+        The constructor of confirmation view class which set up: buttonsFactory, fontFactory, widgetFactory, gridFactory, labelFactory and setups UI
+        :param parent: widget parent
+        :param geometry: geometry object
+        :param name: widget name
+        """
         super(ConfirmationView, self).__init__()
         self.buttonsFactory = ButtonsFactory()
         self.fontFactory = FontFactory()
@@ -18,6 +28,9 @@ class ConfirmationView(QtWidgets.QWidget):
         self.setupConfirmationView()
 
     def setupUi(self):
+        """
+        Set up main information about view
+        """
         self.setObjectName("ConfirmationWidget")
         self.ConfirmationWidget = QtWidgets.QWidget(self)
         self.ConfirmationWidget.setObjectName("ConfirmationWidget")
@@ -25,6 +38,9 @@ class ConfirmationView(QtWidgets.QWidget):
         self.setStyleSheet("background:#ffeead")
 
     def setupConfirmationView(self):
+        """
+        Calls view generating methods
+        """
         font = self.fontFactory.createFont('Consolas', 9, True, False, 75)
         self.setFont(font)
         self.generateMainLabels(font)
@@ -33,6 +49,10 @@ class ConfirmationView(QtWidgets.QWidget):
         QtCore.QMetaObject.connectSlotsByName(self)
 
     def generateMainLabels(self, font):
+        """
+        Generates labels objects
+        :param font: font object
+        """
         font.setPointSize(18)
         self.label_title = self.labelFactory.createLabel(self.ConfirmationWidget, 'label_title', font)
         font.setPointSize(12)
@@ -42,6 +62,9 @@ class ConfirmationView(QtWidgets.QWidget):
         self.label_thanks = self.labelFactory.createLabel(self.ConfirmationWidget, 'label_thanks', font)
 
     def generateLayouts(self):
+        """
+        Generates layouts objects
+        """
         self.gridLayoutWidget_2 = QtWidgets.QWidget(self.ConfirmationWidget)
         self.gridLayoutWidget_2.setGeometry(QtCore.QRect(490, 230, 431, 351))
         self.gridLayoutWidget_2.setObjectName("gridLayoutWidget_2")
@@ -64,6 +87,9 @@ class ConfirmationView(QtWidgets.QWidget):
         self.scroll_widget.setObjectName("scroll_your_tickets")
 
     def generateButtons(self):
+        """
+        Generates buttons objects
+        """
         self.button_again = QtWidgets.QPushButton(self.ConfirmationWidget)
         self.button_again.setGeometry(QtCore.QRect(370, 652, 181, 61))
         font = QtGui.QFont()

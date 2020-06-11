@@ -8,7 +8,14 @@ from view.factory.VboxFactory import VboxFactory
 
 
 class TicketsView(QtWidgets.QWidget):
+    """
+    Tickets view class of QWidget type
+    """
+
     def __init__(self):
+        """
+        The constructor of ticket view class which set up: buttonsFactory, fontFactory, widgetFactory, labelFactory, gridFactory, vboxFactory and setups UI
+        """
         super(TicketsView, self).__init__()
         self.buttonsFactory = ButtonsFactory()
         self.fontFactory = FontFactory()
@@ -19,25 +26,32 @@ class TicketsView(QtWidgets.QWidget):
         self.setupUi()
         self.setupTicketsView()
 
-
-    # pokazanie widoku wybierania biletów
     def setupTicketsView(self):
+        """
+        Calls view generating methods
+        """
         font = self.fontFactory.createFont('Consolas', 9, True, False, 75)
         self.setFont(font)
         self.generateMainLabels(font)
         self.generateBottomView(font)
-        # self.setCentralWidget(self.TicketsWidget)
         self.generateButtonsAndLabelsPlusMinus(font)
         self.generateButtonsTicketsWithNames()
         self.generateCosmetics()
         QtCore.QMetaObject.connectSlotsByName(self)
 
     def setupUi(self):
+        """
+        Set up main information about view
+        """
         self.setObjectName("TicketsWidget")
         self.TicketsWidget = QtWidgets.QWidget(self)
         self.TicketsWidget.setObjectName("TicketsWidget")
 
     def generateMainLabels(self, font):
+        """
+        Generates labels objects
+        :param font: font object
+        """
         font.setPointSize(18)
         self.label_title = self.labelFactory.createLabel(self.TicketsWidget, 'label_title', font)
         font.setPointSize(14)
@@ -54,6 +68,10 @@ class TicketsView(QtWidgets.QWidget):
         self.label_strefa_2.setWordWrap(True)
 
     def generateBottomView(self, font):
+        """
+        Generates objects on bottom of the view
+        :param font: font object
+        """
         self.horizontalLayoutWidget = self.widgetFactory.createWidget(self.TicketsWidget, 'horizontalLayoutWidget')
         self.horizontalLayout = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget)
         self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
@@ -74,6 +92,10 @@ class TicketsView(QtWidgets.QWidget):
         self.payment.setText('Przejdź do płatności')
 
     def generateButtonsAndLabelsPlusMinus(self, font):
+        """
+        Generates increasing and decreasing ticket count buttons
+        :param font: font object
+        """
         self.verticalLayoutWidget = self.widgetFactory.createWidget(self.TicketsWidget, 'verticalLayoutWidget')
         self.btn_reduced_20_2_minus = self.buttonsFactory.createMinusButton('btn_reduced_20_2_minus')
         self.btn_reduced_40_2_minus = self.buttonsFactory.createMinusButton('btn_reduced_40_2_minus')
@@ -184,7 +206,9 @@ class TicketsView(QtWidgets.QWidget):
         ])
 
     def generateButtonsTicketsWithNames(self):
-        # REDUCED ZONE 1
+        """
+        Generates fields with ticket names
+        """
         self.btn_reduced_20 = self.buttonsFactory.createTicketFirstZone('r_20')
         self.btn_reduced_40 = self.buttonsFactory.createTicketFirstZone('r_40')
         self.btn_reduced_oneway = self.buttonsFactory.createTicketFirstZone('r_oneway')
@@ -193,8 +217,6 @@ class TicketsView(QtWidgets.QWidget):
         self.grid_reduced_tickets_first = self.gridFactory.createGrid( self.widget_reduced_first,'zone1','r',[
             self.btn_reduced_20, self.btn_reduced_40, self.btn_reduced_oneway, self.btn_reduced_twoway
         ])
-
-        # NORMAL ZONE 1
         self.btn_normal_20 = self.buttonsFactory.createTicketFirstZone('n_20')
         self.btn_normal_40 = self.buttonsFactory.createTicketFirstZone('n_40')
         self.btn_normal_oneway = self.buttonsFactory.createTicketFirstZone('n_oneway')
@@ -203,8 +225,6 @@ class TicketsView(QtWidgets.QWidget):
         self.grid_normal_tickets_first = self.gridFactory.createGrid( self.widget_normal_first,'zone1','n',[
             self.btn_normal_20, self.btn_normal_40, self.btn_normal_oneway, self.btn_normal_twoway
         ])
-
-        # REDUCED ZONE 2
         self.btn_reduced_20_2 = self.buttonsFactory.createTicketSecondZone('r_20')
         self.btn_reduced_40_2 = self.buttonsFactory.createTicketSecondZone('r_40')
         self.btn_reduced_oneway_2 = self.buttonsFactory.createTicketSecondZone('r_oneway')
@@ -213,8 +233,6 @@ class TicketsView(QtWidgets.QWidget):
         self.grid_reduced_tickets_second = self.gridFactory.createGrid( self.widget_reduced_second,'zone2','r',[
             self.btn_reduced_20_2, self.btn_reduced_40_2, self.btn_reduced_oneway_2, self.btn_reduced_twoway_2
         ])
-
-        # NORMAL ZONE 2
         self.btn_normal_20_2 = self.buttonsFactory.createTicketSecondZone('n_20')
         self.btn_normal_40_2 = self.buttonsFactory.createTicketSecondZone('n_40')
         self.btn_normal_oneway_2 = self.buttonsFactory.createTicketSecondZone('n_oneway')
@@ -225,6 +243,9 @@ class TicketsView(QtWidgets.QWidget):
         ])
 
     def generateCosmetics(self):
+        """
+        Generates other gui objects
+        """
         self.line = QtWidgets.QFrame(self.TicketsWidget)
         self.line.setGeometry(QtCore.QRect(0, 100, 951, 20))
         self.line.setFrameShape(QtWidgets.QFrame.HLine)

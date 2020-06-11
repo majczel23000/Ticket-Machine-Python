@@ -2,7 +2,16 @@ from PyQt5 import QtWidgets, QtGui
 
 
 class Button(QtWidgets.QPushButton):
+    """
+    Button class of QPushButton type
+    """
+
     def __init__(self, name, text, icon=0):
+        """
+        The constructor of button class which set up QPushButton object
+        :param name: button name
+        :param icon: icon object
+        """
         super(Button, self).__init__()
         self.setObjectName(name)
         if text != 0:

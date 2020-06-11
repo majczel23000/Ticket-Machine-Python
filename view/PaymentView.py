@@ -6,7 +6,14 @@ from view.factory.LabelsFactory import LabelFactory
 
 
 class PaymentView(QtWidgets.QWidget):
+    """
+    Payment view class of QWidget type
+    """
+
     def __init__(self):
+        """
+        The constructor of payment view class which set up: buttonsFactory, fontFactory, widgetFactory, labelFactory and setups UI
+        """
         super(PaymentView, self).__init__()
         self.buttonsFactory = ButtonsFactory()
         self.fontFactory = FontFactory()
@@ -16,12 +23,19 @@ class PaymentView(QtWidgets.QWidget):
         self.setupPaymentView()
 
     def setupPaymentView(self):
+        """
+        Calls view generating methods
+        """
         font = self.fontFactory.createFont('Consolas', 9, True, False, 75)
         self.setFont(font)
         self.generateLabels(font)
         self.generateButtons()
 
     def generateLabels(self, font):
+        """
+        Generates labels objects
+        :param font: font object
+        """
         font.setPointSize(18)
         self.label_title = self.labelFactory.createLabel(self.PaymentWidget, 'label_title', font)
         font.setPointSize(12)
@@ -52,6 +66,9 @@ class PaymentView(QtWidgets.QWidget):
         self.horizontal_ticket_count.addWidget(self.label_ticket_count)
 
     def generateButtons(self):
+        """
+        Generates buttons objects
+        """
         self.gridLayoutWidget = QtWidgets.QWidget(self.PaymentWidget)
         self.gridLayoutWidget.setGeometry(QtCore.QRect(40, 180, 341, 341))
         self.gridLayoutWidget.setObjectName("gridLayoutWidget")
@@ -97,6 +114,9 @@ class PaymentView(QtWidgets.QWidget):
         self.grid_banknote.addWidget(self.button_500_zl, 2, 1, 1, 1)
 
     def setupUi(self):
+        """
+        Set up main information about view
+        """
         self.setObjectName("PaymentWidget")
         self.PaymentWidget = QtWidgets.QWidget(self)
         self.PaymentWidget.setObjectName("PaymentWidget")

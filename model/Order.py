@@ -7,7 +7,14 @@ from decimal import Decimal
 
 
 class Order:
+    """
+    Order class
+    """
+
     def __init__(self):
+        """
+        The constructor of order class which initializes the field: money_inserted, tickets, change_list, cost, quantity, money_inserted_value
+        """
         self.money_inserted = list()
         self.tickets = list()
         self.change_list = list()
@@ -16,6 +23,10 @@ class Order:
         self.money_inserted_value = 0
 
     def add_ticket(self, ticket):
+        """
+        Checking ticket to add type and adding it to selected ticket list
+        :param ticket: ticket object to add
+        """
         if isinstance(ticket, TicketReducedZone1) or isinstance(ticket, TicketReducedZone2) \
                 or isinstance(ticket, TicketNormalZone1) or isinstance(ticket, TicketNormalZone2):
             self.tickets.append(ticket)
@@ -24,17 +35,27 @@ class Order:
             self.quantity += 1
 
     def insert_money(self, money):
+        """
+        Checking money to insert type and adding it to inserted money list
+        :param money: money object (Coin or Banknote) to add
+        """
         if isinstance(money, Coin) or isinstance(money, Banknote):
             self.money_inserted.append(money)
             self.count_amount()
 
     def count_amount(self):
+        """
+        Calculates total value of inserted money
+        """
         self.money_inserted_value = 0
         for m in self.money_inserted:
             self.money_inserted_value += float(m.value)
         self.money_inserted_value = float(round(Decimal(self.money_inserted_value), 2))
 
     def calculate_exchange(self):
+        """
+        Calculates change for order
+        """
         if self.money_inserted_value == self.cost:
             print("no exchange")
             return
@@ -50,16 +71,36 @@ class Order:
             i += 1
 
     def get_inserted_amount(self):
+        """
+        Get total value of inserted money
+        :return: total value of inserted money
+        """
         return self.money_inserted_value
 
     def get_cost(self):
+        """
+        Get total cost of selected tickets
+        :return: total cost of selected tickets
+        """
         return self.cost
 
     def set_cost(self, cost):
+        """
+        Set total cost of selected tickets
+        :param cost: total cost of selected tickets
+        """
         self.cost = cost
 
     def get_tickets(self):
+        """
+        Get selected tickets list
+        :return: selected tickets list
+        """
         return self.tickets
 
     def get_change_list(self):
+        """
+        Get list of change money
+        :return: list of change money
+        """
         return self.change_list
