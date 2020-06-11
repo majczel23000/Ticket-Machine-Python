@@ -6,3 +6,5 @@ class LabelFactory:
         return Label(parent, code, labelsData[code]['geometry'], font, labelsData[code]['alignment'], labelsData[code][
             'text'], labelsData[code]['style'])
 
+    def createTicketLabel(self, code, text):
+        return Label(0, code, 0, 0, 0, text, 0)

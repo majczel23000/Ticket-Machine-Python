@@ -32,21 +32,8 @@ class TicketsView(QtWidgets.QWidget):
         self.generateCosmetics()
         QtCore.QMetaObject.connectSlotsByName(self)
 
-    # pokazanie widoku płatności
-    def setupPaymentView(self):
-        font = self.fontFactory.createFont('Consolas', 9, True, False, 75)
-        self.setFont(font)
-
-    # pokazanie widoku potwierdzającego zakup
-    def setupConfirmationView(self):
-        font = self.fontFactory.createFont('Consolas', 9, True, False, 75)
-        self.setFont(font)
-
     def setupUi(self):
         self.setObjectName("TicketsWidget")
-        # self.setWindowTitle("Biletomat razpin")
-        # self.setStyleSheet("QMainWindow {background: 'white';}")
-        # self.resize(950, 732)
         self.TicketsWidget = QtWidgets.QWidget(self)
         self.TicketsWidget.setObjectName("TicketsWidget")
 

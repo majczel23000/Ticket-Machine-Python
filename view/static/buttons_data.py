@@ -39,5 +39,5 @@ buttonsData = {
         "button_100_zl": {"name": "button_100_zl", "icon": {"icon": "assets/100zlotych.jpg", "iconSize": QtCore.QSize(200, 100)}},
         "button_200_zl": {"name": "button_200_zl", "icon": {"icon": "assets/200zlotych.jpg", "iconSize": QtCore.QSize(200, 100)}},
         "button_500_zl": {"name": "button_500_zl", "icon": {"icon": "assets/500zlotych.png", "iconSize": QtCore.QSize(200, 100)}}
-    }
+    },
 }

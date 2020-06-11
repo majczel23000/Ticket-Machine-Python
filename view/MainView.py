@@ -1,4 +1,6 @@
 from PyQt5 import QtWidgets
+
+from view.ConfirmationView import ConfirmationView
 from view.TicketsView import TicketsView
 from view.PaymentView import PaymentView
 
@@ -8,6 +10,7 @@ class MainView(QtWidgets.QMainWindow):
         self.current_view = "tickets_view"
         self.tickets_view = TicketsView()
         self.payment_view = PaymentView()
+        self.confirmation_view = ConfirmationView()
         self.setCentralWidget(self.tickets_view)
         self.setWindowTitle("Biletomat razpin")
         self.setStyleSheet("QMainWindow {background: 'white';}")
@@ -20,3 +23,8 @@ class MainView(QtWidgets.QMainWindow):
                 self.tickets_view.deleteLater()
             self.setCentralWidget(self.payment_view)
             self.current_view == "payment_view"
+        if view == "confirmation":
+            if self.current_view == "payment":
+                self.payment_view.deleteLater()
+            self.setCentralWidget(self.confirmation_view)
+            self.current_view == "confirmation_view"

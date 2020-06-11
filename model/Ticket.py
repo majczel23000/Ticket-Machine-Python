@@ -16,22 +16,22 @@ class ITicket(metaclass=ABCMeta):
 class TicketReducedZone1(ITicket):
 
     def get_info(self):
-        print("Ticket first zone | price: ", self.price, " | type: ", self.type)
+        return str("Ticket first zone | price: " + str(self.price) + " | type: " + str(self.type))
 
 
 class TicketNormalZone1(ITicket):
 
     def get_info(self):
-        print("Ticket first zone | price: ", self.price, " | type: ", self.type)
+        return str("Ticket first zone | price: " + str(self.price) + " | type: " + str(self.type))
 
 
 class TicketReducedZone2(ITicket):
 
     def get_info(self):
-        print("Ticket first zone | price: ", self.price, " | type: ", self.type)
+        return str("Ticket second zone | price: " + str(self.price) + " | type: " + str(self.type))
 
 
 class TicketNormalZone2(ITicket):
 
     def get_info(self):
-        print("Ticket first zone | price: ", self.price, " | type: ", self.type)
+        return str("Ticket second zone | price: " + str(self.price) + " | type: " + str(self.type))

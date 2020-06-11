@@ -10,6 +10,7 @@ class Order:
     def __init__(self):
         self.money_inserted = list()
         self.tickets = list()
+        self.change_list = list()
         self.cost = 0
         self.quantity = 0
         self.money_inserted_value = 0
@@ -32,12 +33,8 @@ class Order:
         for m in self.money_inserted:
             self.money_inserted_value += float(m.value)
         self.money_inserted_value = float(round(Decimal(self.money_inserted_value), 2))
-        print(self.money_inserted_value, self.cost)
-        if self.money_inserted_value >= self.cost:
-            self.calculate_exchange()
 
     def calculate_exchange(self):
-        exchange_list = list()
         if self.money_inserted_value == self.cost:
             print("no exchange")
             return
@@ -49,9 +46,8 @@ class Order:
                 P = math.floor(exchange/values[i])
                 exchange = round(100*(exchange-(values[i]*P)))/100
                 for x in range(0,P):
-                    exchange_list.append(values[i])
+                    self.change_list.append(values[i])
             i += 1
-        print("Nominały do wydania: ", exchange_list)
 
     def get_inserted_amount(self):
         return self.money_inserted_value
@@ -64,3 +60,6 @@ class Order:
 
     def get_tickets(self):
         return self.tickets
+
+    def get_change_list(self):
+        return self.change_list

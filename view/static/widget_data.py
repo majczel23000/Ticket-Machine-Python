@@ -76,5 +76,9 @@ widgetData = {
     "horizontal_payment": {
         "geometry": QtCore.QRect(30, 540, 231, 80),
         "name": "horizontal_payment_2"
+    },
+    "vertical_confirmation": {
+        "geometry": QtCore.QRect(30, 230, 421, 351),
+        "name": "vertical_confirmation"
     }
 }
