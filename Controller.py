@@ -189,7 +189,7 @@ class Controller(metaclass=Singleton):
         inserted = self.order.get_inserted_amount()
         remained = self.order.get_cost()
         left_to_pay = remained-inserted
-       
+
         self.view_helper.find_label_by_object_name(self.ticket_machine.get_gui(), "label_payment_left_value").setText(
             str(left_to_pay)+" zł")
 
@@ -203,6 +203,7 @@ class Controller(metaclass=Singleton):
         Generates bought tickets and generate change.
         :return: nothing
         """
+
         cash = self.order.get_change_list()
         tickets: list() = self.order.get_tickets()
         cash_layout = self.view_helper.find_QGridLayout_by_object_name(self.ticket_machine.get_gui(), "grid_your_change")
@@ -226,6 +227,8 @@ class Controller(metaclass=Singleton):
             label.setMaximumSize(80, 80)
             label.setScaledContents(True)
             cash_layout.addWidget(label, 0, 0, 1, 1)
+
+        self.order.clear_order_data()
 
     @delay(2.0)
     def print_tickets(self, label):

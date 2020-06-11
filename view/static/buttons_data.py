@@ -22,9 +22,9 @@ buttonsData = {
         "r_twoway": {"text": "Dwuprzejazdowy [4.00zł]", "name": "btn_reduced_twoway_2"},
     },
     "coins": {
-        "button_1_gr": {"name": "button_1_gr", "icon": { "icon": "assets/1grosz.jpg", "iconSize": QtCore.QSize(80, 80)}},
-        "button_2_gr": {"name": "button_2_gr", "icon": {"icon": "assets/2grosze.jpg", "iconSize": QtCore.QSize(80, 80)}},
-        "button_5_gr": {"name": "button_5_gr", "icon": {"icon": "assets/5groszy.jpg", "iconSize": QtCore.QSize(80, 80)}},
+        "button_1_gr": {"name": "button_1_gr", "icon": { "icon": "assets/1grosz.png", "iconSize": QtCore.QSize(80, 80)}},
+        "button_2_gr": {"name": "button_2_gr", "icon": {"icon": "assets/2grosze.png", "iconSize": QtCore.QSize(80, 80)}},
+        "button_5_gr": {"name": "button_5_gr", "icon": {"icon": "assets/5groszy.png", "iconSize": QtCore.QSize(80, 80)}},
         "button_10_gr": {"name": "button_10_gr", "icon": {"icon": "assets/10groszy.png", "iconSize": QtCore.QSize(80, 80)}},
         "button_20_gr": {"name": "button_20_gr", "icon": {"icon": "assets/20groszy.png", "iconSize": QtCore.QSize(80, 80)}},
         "button_50_gr": {"name": "button_50_gr", "icon": {"icon": "assets/50groszy.png", "iconSize": QtCore.QSize(80, 80)}},
