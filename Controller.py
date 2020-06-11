@@ -1,6 +1,4 @@
 import sys
-import time
-
 from PyQt5.QtGui import QPixmap
 from PyQt5.QtWidgets import QVBoxLayout, QLabel
 from factory.MoneyFactory import MoneyFactory
@@ -14,19 +12,29 @@ from view.factory.LabelsFactory import LabelFactory
 
 
 class Controller(metaclass=Singleton):
+    """
+    Class of controller, which controls Ticket Machine
+    """
 
     def __init__(self):
+        """
+        The constructor initializes the fields: app, ticket_machine, view_helper, order, ticketFactory, moneyFactory, labelFactory
+        """
         app = QtWidgets.QApplication(sys.argv)
         self.ticket_machine = TicketMachine()
         self.view_helper = ViewHelper()
         self.order = Order()
         self.ticketFactory = TicketFactory()
         self.moneyFactory = MoneyFactory()
-        self.assing_ticket_actions()
         self.labelFactory = LabelFactory()
+        self.assing_ticket_actions()
         sys.exit(app.exec_())
 
     def assing_ticket_actions(self):
+        """
+        Assigning actions to buttons in view method
+        :return: nothing
+        """
         self.view_helper.find_button_by_object_name(self.ticket_machine.get_gui(), 'btn_normal_20_plus').clicked.connect(lambda: self.add_ticket(1, 2.00, 'normal', 'btn_normal_20_count', 'n20'))
         self.view_helper.find_button_by_object_name(self.ticket_machine.get_gui(), 'btn_normal_40_plus').clicked.connect(lambda: self.add_ticket(1, 3.60, 'normal', 'btn_normal_40_count', 'n40'))
         self.view_helper.find_button_by_object_name(self.ticket_machine.get_gui(), 'btn_normal_oneway_plus').clicked.connect(lambda: self.add_ticket(1, 4.00, 'normal', 'btn_normal_oneway_count',
@@ -74,6 +82,11 @@ class Controller(metaclass=Singleton):
         self.view_helper.find_button_by_object_name(self.ticket_machine.get_gui(), 'payment').clicked.connect(lambda: self.change_view("payment"))
 
     def assign_payment_actions(self):
+        """
+        Assigning actions to payment buttons in payment view method.
+        Assign actions to coins and banknotes objects.
+        :return: nothing
+        """
         self.view_helper.find_button_by_object_name(self.ticket_machine.get_gui(), 'button_1_gr').clicked.connect(lambda: self.add_money("0.01", 'coin'))
         self.view_helper.find_button_by_object_name(self.ticket_machine.get_gui(), 'button_2_gr').clicked.connect(lambda: self.add_money("0.02", 'coin'))
         self.view_helper.find_button_by_object_name(self.ticket_machine.get_gui(), 'button_5_gr').clicked.connect(lambda: self.add_money("0.05", 'coin'))
@@ -91,6 +104,15 @@ class Controller(metaclass=Singleton):
         self.view_helper.find_button_by_object_name(self.ticket_machine.get_gui(), 'button_500_zl').clicked.connect(lambda: self.add_money("500.00", 'banknote'))
 
     def add_ticket(self, zone_number, price, type, label, code):
+        """
+        Adds ticket to chosen ticket list.
+        :param zone_number: zone number of selected ticket
+        :param price: price of selected ticket
+        :param type: type of selected ticket
+        :param label: label object name, which stores number of selected tickets
+        :param code: code of ticket
+        :return: nothing
+        """
         counter = self.view_helper.find_label_by_object_name(self.ticket_machine.get_gui(), label)
         counter_int = int(counter.text())
         counter_int += 1
@@ -100,10 +122,20 @@ class Controller(metaclass=Singleton):
         self.update_informations()
 
     def update_informations(self):
+        """
+        Update information about number of selected tickets and total cost.
+        :return: nothing
+        """
         self.view_helper.find_label_by_object_name(self.ticket_machine.get_gui(), "label_tickets_count_value").setText(str(len(self.order.get_tickets())))
         self.view_helper.find_label_by_object_name(self.ticket_machine.get_gui(), "label_total_cost_value").setText(str(self.order.get_cost()))
 
     def remove_ticket(self, code, label):
+        """
+        Removes ticket from selected tickets list in order.
+        :param label: label object name, which stores number of selected tickets
+        :param code: code of ticket
+        :return: nothing
+        """
         if any(x.code == code for x in self.order.get_tickets()):
             object_to_remove = next((x for x in self.order.get_tickets() if x.code == code))
             self.order.tickets.remove(object_to_remove)
@@ -117,6 +149,11 @@ class Controller(metaclass=Singleton):
             counter.setText(str(counter_int))
 
     def change_view(self, view_name):
+        """
+        Change view based on view_name.
+        :param view_name: name of view to change
+        :return: nothing
+        """
         if view_name == "payment" and len(self.order.get_tickets()) > 0:
             self.ticket_machine.get_gui().change_view(view_name)
             self.assign_payment_actions()
@@ -125,6 +162,13 @@ class Controller(metaclass=Singleton):
             self.ticket_machine.get_gui().change_view(view_name)
 
     def add_money(self, value, money_type):
+        """
+        Create inserted money object and add it to inserted money list.
+        If total inserted value is greated than total cost, it calls method to calculate and return change.
+        :param value: value of money
+        :param money_type: type of money
+        :return: nothing
+        """
         money = self.moneyFactory.createMoney(money_type, value)
         self.order.insert_money(money)
         if self.order.get_inserted_amount() >= self.order.get_cost():
@@ -133,6 +177,10 @@ class Controller(metaclass=Singleton):
             self.return_tickets_and_change()
 
     def return_tickets_and_change(self):
+        """
+        Generates bought tickets and generate change.
+        :return: nothing
+        """
         cash = self.order.get_change_list()
         tickets: list() = self.order.get_tickets()
         cash_layout = self.view_helper.find_QGridLayout_by_object_name(self.ticket_machine.get_gui(), "grid_your_change")
@@ -159,4 +207,8 @@ class Controller(metaclass=Singleton):
 
     @delay(2.0)
     def print_tickets(self, label):
+        """
+        Print ticket to bought ticket list. Simulate waiting proccess with delay decorator.
+        :return: nothing
+        """
         label.setVisible(True)
