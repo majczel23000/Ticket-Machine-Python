@@ -187,14 +187,9 @@ class Controller(metaclass=Singleton):
         self.order.insert_money(money)
 
         inserted = self.order.get_inserted_amount()
-        print(inserted)
-
         remained = self.order.get_cost()
-        print(remained)
-
         left_to_pay = remained-inserted
-        print(left_to_pay)
-
+       
         self.view_helper.find_label_by_object_name(self.ticket_machine.get_gui(), "label_payment_left_value").setText(
             str(left_to_pay)+" zł")
 
