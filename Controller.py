@@ -103,6 +103,12 @@ class Controller(metaclass=Singleton):
         self.view_helper.find_button_by_object_name(self.ticket_machine.get_gui(), 'button_200_zl').clicked.connect(lambda: self.add_money("200.00", 'banknote'))
         self.view_helper.find_button_by_object_name(self.ticket_machine.get_gui(), 'button_500_zl').clicked.connect(lambda: self.add_money("500.00", 'banknote'))
 
+    def assign_confirmation_actions(self):
+        """
+        Assign actions to buttons in confirmation view
+        """
+        self.view_helper.find_button_by_object_name(self.ticket_machine.get_gui(), 'button_again').clicked.connect(lambda: self.change_view("tickets"))
+
     def add_ticket(self, zone_number, price, type, label, code):
         """
         Adds ticket to chosen ticket list.
@@ -158,8 +164,12 @@ class Controller(metaclass=Singleton):
             self.ticket_machine.get_gui().change_view(view_name)
             self.assign_payment_actions()
             self.view_helper.find_label_by_object_name(self.ticket_machine.get_gui(), "label_payment_left_value").setText(str(self.order.get_cost()) + " zł")
-        if view_name == "confirmation":
+        elif view_name == "confirmation":
             self.ticket_machine.get_gui().change_view(view_name)
+            self.assign_confirmation_actions()
+        elif view_name == "tickets":
+            self.ticket_machine.get_gui().change_view(view_name)
+            self.assing_ticket_actions()
 
     def add_money(self, value, money_type):
         """

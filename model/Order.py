@@ -57,7 +57,6 @@ class Order:
         Calculates change for order
         """
         if self.money_inserted_value == self.cost:
-            print("no exchange")
             return
         exchange = self.money_inserted_value - self.cost
         i = 0
@@ -69,6 +68,17 @@ class Order:
                 for x in range(0,P):
                     self.change_list.append(values[i])
             i += 1
+
+    def clear_order_data(self):
+        """
+        Reset all order data
+        """
+        self.money_inserted_value = 0
+        self.cost = 0
+        self.tickets = list()
+        self.quantity = 0
+        self.change_list = list()
+        self.money_inserted = list()
 
     def get_inserted_amount(self):
         """

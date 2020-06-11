@@ -15,10 +15,9 @@ class MainView(QtWidgets.QMainWindow):
         The constructor of main view class which set up: current_view, tickets_view, confirmation_view, payment_view
         """
         super(MainView, self).__init__()
-        self.current_view = "tickets_view"
         self.tickets_view = TicketsView()
-        self.payment_view = PaymentView()
-        self.confirmation_view = ConfirmationView()
+        self.payment_view = None
+        self.confirmation_view = None
         self.setCentralWidget(self.tickets_view)
         self.setWindowTitle("Biletomat razpin")
         self.setStyleSheet("QMainWindow {background: 'white';}")
@@ -31,12 +30,20 @@ class MainView(QtWidgets.QMainWindow):
         :param view: view name to change
         """
         if view == "payment":
-            if self.current_view == "tickets_view":
-                self.tickets_view.deleteLater()
+            if self.tickets_view.isVisible():
+                self.tickets_view.setVisible(False)
+            self.payment_view = PaymentView()
             self.setCentralWidget(self.payment_view)
-            self.current_view == "payment_view"
-        if view == "confirmation":
-            if self.current_view == "payment":
-                self.payment_view.deleteLater()
+            self.payment_view.setVisible(True)
+        elif view == "confirmation":
+            if self.payment_view.isVisible():
+                self.payment_view.setVisible(False)
+            self.confirmation_view = ConfirmationView()
             self.setCentralWidget(self.confirmation_view)
-            self.current_view == "confirmation_view"
+            self.confirmation_view.setVisible(True)
+        elif view == "tickets":
+            if self.confirmation_view.isVisible():
+                self.confirmation_view.setVisible(False)
+            self.tickets_view = TicketsView()
+            self.setCentralWidget(self.tickets_view)
+            self.tickets_view.setVisible(True)
