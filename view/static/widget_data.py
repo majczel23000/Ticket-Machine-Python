@@ -14,23 +14,23 @@ widgetData = {
         "name": "widget_normal_second"
     },
     "widget_reduced_second": {
-        "geometry": QtCore.QRect(520, 420, 223, 211),
+        "geometry": QtCore.QRect(520, 410, 223, 211),
         "name": "widget_reduced_second"
     },
     "horizontalLayoutWidget": {
-        "geometry": QtCore.QRect(0, 659, 581, 71),
+        "geometry": QtCore.QRect(0, 649, 571, 71),
         "name": "horizontalLayoutWidget"
     },
     "verticalLayoutWidget": {
-        "geometry": QtCore.QRect(760, 420, 51, 211),
+        "geometry": QtCore.QRect(760, 410, 51, 211),
         "name": "verticalLayoutWidget"
     },
     "verticalLayoutWidget_2": {
-        "geometry": QtCore.QRect(850, 420, 51, 211),
+        "geometry": QtCore.QRect(850, 410, 51, 211),
         "name": "verticalLayoutWidget_2"
     },
     "verticalLayoutWidget_3": {
-        "geometry": QtCore.QRect(810, 430, 41, 191),
+        "geometry": QtCore.QRect(810, 420, 41, 191),
         "name": "verticalLayoutWidget_3"
     },
     "verticalLayoutWidget_4": {
@@ -70,11 +70,11 @@ widgetData = {
         "name": "verticalLayoutWidget_12"
     },
     "horizontal_payment_2": {
-        "geometry": QtCore.QRect(30, 640, 891, 81),
+        "geometry": QtCore.QRect(12, 640, 891, 81),
         "name": "horizontal_payment_2"
     },
     "horizontal_payment": {
-        "geometry": QtCore.QRect(30, 540, 231, 80),
+        "geometry": QtCore.QRect(12, 540, 231, 80),
         "name": "horizontal_payment_2"
     },
     "vertical_confirmation": {

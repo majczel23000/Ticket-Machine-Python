@@ -19,9 +19,9 @@ class MainView(QtWidgets.QMainWindow):
         self.payment_view = None
         self.confirmation_view = None
         self.setCentralWidget(self.tickets_view)
-        self.setWindowTitle("Biletomat razpin")
-        self.setStyleSheet("QMainWindow {background: 'white';}")
-        self.resize(950, 732)
+        self.setWindowTitle("AUTOMAT BILETOWY RP. Michał Raźny, Piotr Pindel, 41K9")
+        self.setStyleSheet("QMainWindow {background: '#A8CDE6';}")
+        self.resize(920, 720)
         self.show()
 
     def change_view(self, view):

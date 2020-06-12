@@ -35,7 +35,6 @@ class ConfirmationView(QtWidgets.QWidget):
         self.ConfirmationWidget = QtWidgets.QWidget(self)
         self.ConfirmationWidget.setObjectName("ConfirmationWidget")
         self.setAutoFillBackground(False)
-        self.setStyleSheet("background:#ffeead")
 
     def setupConfirmationView(self):
         """

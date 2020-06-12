@@ -13,7 +13,7 @@ class ButtonsFactory:
         :param code: first zone ticket code
         :return: Button class object
         """
-        return Button(buttonsData['zone1'][code]['name'], buttonsData['zone1'][code]['text'])
+        return Button(buttonsData['zone1'][code]['name'], buttonsData['zone1'][code]['text'], 0, 'TICKET_LABEL')
 
     def createTicketSecondZone(self, code):
         """
@@ -21,7 +21,7 @@ class ButtonsFactory:
         :param code: second zone ticket code
         :return: Button class object
         """
-        return Button(buttonsData['zone2'][code]['name'], buttonsData['zone2'][code]['text'])
+        return Button(buttonsData['zone2'][code]['name'], buttonsData['zone2'][code]['text'], 0, 'TICKET_LABEL')
 
     def createMinusButton(self, name):
         """
@@ -29,7 +29,7 @@ class ButtonsFactory:
         :param name: name of button
         :return: Button class object
         """
-        return Button(name, '-')
+        return Button(name, '-', 0, 'MINUS')
 
     def createPlusButton(self, name):
         """
@@ -37,7 +37,7 @@ class ButtonsFactory:
         :param name: name of button
         :return: Button class object
         """
-        return Button(name, '+')
+        return Button(name, '+', 0, 'PLUS')
 
     def createCoinButton(self, code):
         """

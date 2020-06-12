@@ -295,13 +295,8 @@ class Controller(metaclass=Singleton):
         tickets: list() = self.order.get_tickets()
         cash_layout = self.view_helper.find_QGridLayout_by_object_name(self.ticket_machine.get_gui(),
                                                                        "grid_your_change")
-
-        tickets_scroll: QVBoxLayout = self.view_helper.find_QWidget_by_object_name(self.ticket_machine.get_gui(),
-                                                                                   "scroll_your_tickets")
+        tickets_scroll: QVBoxLayout = self.view_helper.find_QWidget_by_object_name(self.ticket_machine.get_gui(),                                                                           "scroll_your_tickets")
         tickets_layout = QtWidgets.QVBoxLayout(tickets_scroll)
-
-        cash_count = len(cash)
-        tickets_count = len(tickets)
         i = 1
         for ticket in tickets:
             label = self.labelFactory.createTicketLabel('ticket', ticket.get_info())
@@ -313,14 +308,13 @@ class Controller(metaclass=Singleton):
             label = QLabel()
             pixmap = QPixmap('assets/' + str(money) + '0.png')
             label.setPixmap(pixmap)
-            label.setMaximumSize(150, 80)
-            label.setScaledContents(True)
-            if i < 5:
-                cash_layout.addWidget(label, i, 0, 1, 1)
-            elif i < 9:
-                cash_layout.addWidget(label, i - 4, 1, 1, 1)
+            if money > 5:
+                label.setMaximumSize(150, 80)
             else:
-                cash_layout.addWidget(label, i - 8, 2, 1, 1)
+                label.setMaximumSize(80, 80)
+            label.setScaledContents(True)
+            label.setVisible(False)
+            self.give_change(cash_layout,label,i)
             i += 1
         self.order.clear_order_data()
 
@@ -333,3 +327,14 @@ class Controller(metaclass=Singleton):
         label.setVisible(True)
         self.view_helper.find_label_by_object_name(self.ticket_machine.get_gui(), 'label_thanks').show()
         self.view_helper.find_button_by_object_name(self.ticket_machine.get_gui(), 'button_again').setDisabled(False)
+
+    @delay(2.0)
+    def give_change(self, cash_layout, label, i):
+        if i < 5:
+            cash_layout.addWidget(label, i, 0, 1, 1)
+        elif i < 9:
+            cash_layout.addWidget(label, i - 4, 1, 1, 1)
+        else:
+            cash_layout.addWidget(label, i - 8, 2, 1, 1)
+        label.setVisible(True)
+

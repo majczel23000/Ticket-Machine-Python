@@ -54,8 +54,6 @@ class PaymentView(QtWidgets.QWidget):
         self.label_payment_change_value = self.labelFactory.createLabel(self.PaymentWidget, 'label_payment_change_value', font)
         self.horizontal_payment.addWidget(self.label_payment_change_value)
         self.horizontalLayoutWidget = self.widgetFactory.createWidget(self.PaymentWidget, 'horizontal_payment')
-        self.horizontalLayoutWidget.setGeometry(QtCore.QRect(30, 540, 231, 80))
-        self.horizontalLayoutWidget.setObjectName("horizontalLayoutWidget")
         self.horizontal_ticket_count = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget)
         self.horizontal_ticket_count.setContentsMargins(0, 0, 0, 0)
         self.horizontal_ticket_count.setSpacing(0)
@@ -121,7 +119,6 @@ class PaymentView(QtWidgets.QWidget):
         self.PaymentWidget = QtWidgets.QWidget(self)
         self.PaymentWidget.setObjectName("PaymentWidget")
         self.setAutoFillBackground(False)
-        self.setStyleSheet("background:#ffeead")
         QtCore.QMetaObject.connectSlotsByName(self)
 
 
