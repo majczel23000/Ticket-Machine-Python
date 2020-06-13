@@ -1,7 +1,8 @@
 from src.view.MainView import MainView
+from src.pattern.singleton import Singleton
 
 
-class TicketMachine:
+class TicketMachine(metaclass=Singleton):
     """
     Ticket Machine class
     """

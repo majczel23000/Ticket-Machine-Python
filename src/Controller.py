@@ -12,7 +12,7 @@ from src.view.decorators import delay
 from src.view.factory.LabelsFactory import LabelFactory
 
 
-class Controller(metaclass=Singleton):
+class Controller:
     """
     Class of controller, which controls Ticket Machine
     """
