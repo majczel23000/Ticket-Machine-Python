@@ -13,3 +13,7 @@ class TicketMachineTest(unittest.TestCase):
         instance1 = TicketMachine()
         instance2 = TicketMachine()
         self.assertTrue(instance1 == instance2)
+
+
+if __name__ == '__main__':
+    unittest.main()

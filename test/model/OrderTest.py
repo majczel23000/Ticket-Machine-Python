@@ -66,3 +66,7 @@ class OrderTest(unittest.TestCase):
         self.__order.insert_money(self.moneyFactory.createMoney('coin', 2.00))
         self.__order.insert_money(self.moneyFactory.createMoney('coin', 5.00))
         self.__order.insert_money(self.moneyFactory.createMoney('banknote', 10.00))
+
+
+if __name__ == '__main__':
+    unittest.main()
