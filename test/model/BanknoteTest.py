@@ -14,3 +14,7 @@ class CoinTest(unittest.TestCase):
 
     def test_coin_value(self):
         self.assertEqual(self.__banknote.get_value(), 10.00)
+
+
+if __name__ == '__main__':
+    unittest.main()

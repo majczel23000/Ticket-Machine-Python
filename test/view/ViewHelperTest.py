@@ -51,3 +51,6 @@ class ViewHelperTest(unittest.TestCase):
         qgrid.setObjectName(self.qgrid_name)
         self.__view = window
 
+
+if __name__ == '__main__':
+    unittest.main()
