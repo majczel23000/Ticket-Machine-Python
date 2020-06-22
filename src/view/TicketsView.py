@@ -14,7 +14,9 @@ class TicketsView(QtWidgets.QWidget):
 
     def __init__(self):
         """
-        The constructor of ticket view class which set up: buttonsFactory, fontFactory, widgetFactory, labelFactory, gridFactory, vboxFactory and setups UI
+        The constructor of ticket view class which set up: buttonsFactory,
+        fontFactory, widgetFactory, labelFactory, gridFactory,
+        vboxFactory and setups UI
         """
         super(TicketsView, self).__init__()
         self.buttonsFactory = ButtonsFactory()

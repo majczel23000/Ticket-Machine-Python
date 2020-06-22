@@ -22,22 +22,22 @@ buttonsData = {
         "r_twoway": {"text": "Dwuprzejazdowy [4.00zł]", "name": "btn_reduced_twoway_2"},
     },
     "coins": {
-        "button_1_gr": {"name": "button_1_gr", "icon": { "icon": "src/assets/0.01.png", "iconSize": QtCore.QSize(80, 80)}},
-        "button_2_gr": {"name": "button_2_gr", "icon": {"icon": "src/assets/0.02.png", "iconSize": QtCore.QSize(80, 80)}},
-        "button_5_gr": {"name": "button_5_gr", "icon": {"icon": "src/assets/0.05.png", "iconSize": QtCore.QSize(80, 80)}},
-        "button_10_gr": {"name": "button_10_gr", "icon": {"icon": "src/assets/0.10.png", "iconSize": QtCore.QSize(80, 80)}},
-        "button_20_gr": {"name": "button_20_gr", "icon": {"icon": "src/assets/0.20.png", "iconSize": QtCore.QSize(80, 80)}},
-        "button_50_gr": {"name": "button_50_gr", "icon": {"icon": "src/assets/0.50.png", "iconSize": QtCore.QSize(80, 80)}},
-        "button_1_zl": {"name": "button_1_zl", "icon": {"icon": "src/assets/1.00.png", "iconSize": QtCore.QSize(80, 80)}},
-        "button_2_zl": {"name": "button_2_zl", "icon": {"icon": "src/assets/2.00.png", "iconSize": QtCore.QSize(80, 80)}},
-        "button_5_zl": {"name": "button_5_zl", "icon": {"icon": "src/assets/5.00.png", "iconSize": QtCore.QSize(80, 80)}}
+        "button_1_gr": {"name": "button_1_gr", "icon": { "icon": "assets/0.01.png", "iconSize": QtCore.QSize(80, 80)}},
+        "button_2_gr": {"name": "button_2_gr", "icon": {"icon": "assets/0.02.png", "iconSize": QtCore.QSize(80, 80)}},
+        "button_5_gr": {"name": "button_5_gr", "icon": {"icon": "assets/0.05.png", "iconSize": QtCore.QSize(80, 80)}},
+        "button_10_gr": {"name": "button_10_gr", "icon": {"icon": "assets/0.10.png", "iconSize": QtCore.QSize(80, 80)}},
+        "button_20_gr": {"name": "button_20_gr", "icon": {"icon": "assets/0.20.png", "iconSize": QtCore.QSize(80, 80)}},
+        "button_50_gr": {"name": "button_50_gr", "icon": {"icon": "assets/0.50.png", "iconSize": QtCore.QSize(80, 80)}},
+        "button_1_zl": {"name": "button_1_zl", "icon": {"icon": "assets/1.00.png", "iconSize": QtCore.QSize(80, 80)}},
+        "button_2_zl": {"name": "button_2_zl", "icon": {"icon": "assets/2.00.png", "iconSize": QtCore.QSize(80, 80)}},
+        "button_5_zl": {"name": "button_5_zl", "icon": {"icon": "assets/5.00.png", "iconSize": QtCore.QSize(80, 80)}}
     },
     "banknotes": {
-        "button_10_zl": {"name": "button_10_zl", "icon": { "icon": "src/assets/10.00.png", "iconSize": QtCore.QSize(200, 100)}},
-        "button_20_zl": {"name": "button_20_zl", "icon": {"icon": "src/assets/20.00.png", "iconSize": QtCore.QSize(200, 100)}},
-        "button_50_zl": {"name": "button_50_zl", "icon": {"icon": "src/assets/50.00.png", "iconSize": QtCore.QSize(200, 100)}},
-        "button_100_zl": {"name": "button_100_zl", "icon": {"icon": "src/assets/100.00.png", "iconSize": QtCore.QSize(200, 100)}},
-        "button_200_zl": {"name": "button_200_zl", "icon": {"icon": "src/assets/200.00.png", "iconSize": QtCore.QSize(200, 100)}},
-        "button_500_zl": {"name": "button_500_zl", "icon": {"icon": "src/assets/500.00.png", "iconSize": QtCore.QSize(200, 100)}}
+        "button_10_zl": {"name": "button_10_zl", "icon": { "icon": "assets/10.00.png", "iconSize": QtCore.QSize(200, 100)}},
+        "button_20_zl": {"name": "button_20_zl", "icon": {"icon": "assets/20.00.png", "iconSize": QtCore.QSize(200, 100)}},
+        "button_50_zl": {"name": "button_50_zl", "icon": {"icon": "assets/50.00.png", "iconSize": QtCore.QSize(200, 100)}},
+        "button_100_zl": {"name": "button_100_zl", "icon": {"icon": "assets/100.00.png", "iconSize": QtCore.QSize(200, 100)}},
+        "button_200_zl": {"name": "button_200_zl", "icon": {"icon": "assets/200.00.png", "iconSize": QtCore.QSize(200, 100)}},
+        "button_500_zl": {"name": "button_500_zl", "icon": {"icon": "assets/500.00.png", "iconSize": QtCore.QSize(200, 100)}}
     },
 }

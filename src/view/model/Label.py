@@ -1,6 +1,5 @@
 from PyQt5 import QtWidgets
 
-
 class Label(QtWidgets.QLabel):
     """
     Label class of QLabel type

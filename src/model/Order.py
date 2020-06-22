@@ -13,7 +13,8 @@ class Order:
 
     def __init__(self):
         """
-        The constructor of order class which initializes the field: money_inserted, tickets, change_list, cost, quantity, money_inserted_value
+        The constructor of order class which initializes the field: money_inserted, tickets, change_list, cost,
+        quantity, money_inserted_value
         """
         self.money_inserted = list()
         self.tickets = list()

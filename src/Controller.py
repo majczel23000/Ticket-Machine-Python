@@ -5,10 +5,9 @@ from src.factory.MoneyFactory import MoneyFactory
 from src.model.Order import *
 from src.model.TicketMachine import *
 from src.factory.TicketFactory import TicketFactory
-from src.pattern.singleton import Singleton
 from src.view.MainView import *
 from src.view.ViewHelper import ViewHelper
-from src.view.decorators import delay
+from src.pattern.decorators import delay
 from src.view.factory.LabelsFactory import LabelFactory
 
 
@@ -209,16 +208,6 @@ class Controller:
         self.order.add_ticket(t)
         self.update_informations()
 
-    def update_informations(self):
-        """
-        Update information about number of selected tickets and total cost.
-        :return: nothing
-        """
-        self.view_helper.find_label_by_object_name(self.ticket_machine.get_gui(), "label_tickets_count_value").setText(
-            str(len(self.order.get_tickets())))
-        self.view_helper.find_label_by_object_name(self.ticket_machine.get_gui(), "label_total_cost_value").setText(
-            str(self.order.get_cost()))
-
     def remove_ticket(self, code, label):
         """
         Removes ticket from selected tickets list in order.
@@ -238,6 +227,16 @@ class Controller:
                 counter_int -= 1
             counter.setText(str(counter_int))
 
+    def update_informations(self):
+        """
+        Update information about number of selected tickets and total cost.
+        :return: nothing
+        """
+        self.view_helper.find_label_by_object_name(self.ticket_machine.get_gui(), "label_tickets_count_value").setText(
+            str(len(self.order.get_tickets())))
+        self.view_helper.find_label_by_object_name(self.ticket_machine.get_gui(), "label_total_cost_value").setText(
+            str("{:.2f}".format(self.order.get_cost())) + " zł")
+
     def change_view(self, view_name):
         """
         Change view based on view_name.
@@ -249,12 +248,12 @@ class Controller:
             self.assign_payment_actions()
             self.view_helper.find_label_by_object_name(self.ticket_machine.get_gui(),
                                                        "label_payment_left_value").setText(
-                str(self.order.get_cost()) + " zł")
+                str("{:.2f}".format(self.order.get_cost())) + " zł")
             self.view_helper.find_label_by_object_name(self.ticket_machine.get_gui(), "label_ticket_count").setText(
                 str(len(self.order.get_tickets())))
             self.view_helper.find_label_by_object_name(self.ticket_machine.get_gui(),
                                                        "label_payment_change_value").setText(
-                str(self.order.get_cost()) + " zł")
+                str("{:.2f}".format(self.order.get_cost())) + " zł")
 
         elif view_name == "confirmation":
             self.ticket_machine.get_gui().change_view(view_name)
@@ -266,7 +265,7 @@ class Controller:
     def add_money(self, value, money_type):
         """
         Create inserted money object and add it to inserted money list.
-        If total inserted value is greated than total cost, it calls method to calculate and return change.
+        If total inserted value is greater than total cost, it calls method to calculate and return change.
         :param value: value of money
         :param money_type: type of money
         :return: nothing
@@ -276,10 +275,10 @@ class Controller:
 
         inserted = self.order.get_inserted_amount()
         remained = self.order.get_cost()
-        left_to_pay = round(remained - inserted,2)
+        left_to_pay = round(remained - inserted, 2)
 
         self.view_helper.find_label_by_object_name(self.ticket_machine.get_gui(), "label_payment_left_value").setText(
-            str(left_to_pay) + " zł")
+            str("{:.2f}".format(left_to_pay)) + " zł")
 
         if self.order.get_inserted_amount() >= self.order.get_cost():
             self.change_view("confirmation")
@@ -296,7 +295,8 @@ class Controller:
         tickets: list() = self.order.get_tickets()
         cash_layout = self.view_helper.find_QGridLayout_by_object_name(self.ticket_machine.get_gui(),
                                                                        "grid_your_change")
-        tickets_scroll: QVBoxLayout = self.view_helper.find_QWidget_by_object_name(self.ticket_machine.get_gui(),                                                                           "scroll_your_tickets")
+        tickets_scroll: QVBoxLayout = self.view_helper.find_QWidget_by_object_name(self.ticket_machine.get_gui(),
+                                                                                   "scroll_your_tickets")
         tickets_layout = QtWidgets.QVBoxLayout(tickets_scroll)
         i = 1
         for ticket in tickets:
@@ -307,7 +307,7 @@ class Controller:
 
         for money in cash:
             label = QLabel()
-            pixmap = QPixmap('src/assets/' + str(money) + '0.png')
+            pixmap = QPixmap('assets/' + "{:.2f}".format(money) + '.png')
             label.setPixmap(pixmap)
             if money > 5:
                 label.setMaximumSize(150, 80)
@@ -315,7 +315,7 @@ class Controller:
                 label.setMaximumSize(80, 80)
             label.setScaledContents(True)
             label.setVisible(False)
-            self.give_change(cash_layout,label,i)
+            self.give_change(cash_layout, label, i)
             i += 1
         self.order.clear_order_data()
 
@@ -338,4 +338,3 @@ class Controller:
         else:
             cash_layout.addWidget(label, i - 8, 2, 1, 1)
         label.setVisible(True)
-
