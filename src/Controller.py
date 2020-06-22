@@ -329,7 +329,7 @@ class Controller:
         self.view_helper.find_label_by_object_name(self.ticket_machine.get_gui(), 'label_thanks').show()
         self.view_helper.find_button_by_object_name(self.ticket_machine.get_gui(), 'button_again').setDisabled(False)
 
-    @delay(2.0)
+    @delay(4.0)
     def give_change(self, cash_layout, label, i):
         if i < 5:
             cash_layout.addWidget(label, i, 0, 1, 1)
